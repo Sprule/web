@@ -9,11 +9,13 @@ import { SuiModule } from 'ng2-semantic-ui';
 
 import { AppComponent } from './app.component';
 import { MarketingComponent } from './marketing/marketing.component';
+import { LoginComponent } from './global/login/login.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         MarketingComponent,
+        LoginComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'my-app'}),
