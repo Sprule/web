@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Apollo } from 'apollo-angular/Apollo';
 import gql from 'graphql-tag';
+import { PLATFORM_ID } from '@angular/core/src/application_tokens';
+import { isPlatformBrowser } from '@angular/common/src/platform_id';
 
 @Injectable()
 export class AuthService {
-    public token;
 
     constructor(
-        public apollo: Apollo
+        public apollo: Apollo,
+        @Inject(PLATFORM_ID) public platformId: Object
     ) { 
         this.login('test', 'test');
     }
@@ -35,6 +37,20 @@ export class AuthService {
     }
 
     public isAuthed(): boolean {
-        return this.token !== null;
-    }    
+        return this.getToken() != null;
+    } 
+    
+    public getToken(): string {
+        if (isPlatformBrowser(this.platformId)) {
+            return localStorage.getItem('token');
+        } else {
+            return null;
+        }
+    }
+
+    public setToken(token: string) {
+        if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('token', token);
+        }
+    }
 }
