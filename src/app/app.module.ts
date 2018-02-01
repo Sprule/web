@@ -1,3 +1,4 @@
+import { HostnameService } from './services/hostname.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -9,22 +10,24 @@ import { AppComponent } from './app.component';
 import { MarketingComponent } from './marketing/marketing.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MarketingComponent,
-  ],
-  imports: [
-    BrowserModule.withServerTransition({appId: 'my-app'}),
-    RouterModule.forRoot([
-      { path: 'home', component: MarketingComponent, pathMatch: 'full'},
-      { path: '', loadChildren: './community/community.module#CommunityModule'},
-    //   { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
-      ]),
-      HttpClientModule, // provides HttpClient for HttpLink
-      ApolloModule,
-      HttpLinkModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MarketingComponent,
+    ],
+    imports: [
+        BrowserModule.withServerTransition({appId: 'my-app'}),
+        RouterModule.forRoot([
+            { path: 'home', component: MarketingComponent, pathMatch: 'full'},
+            { path: '', loadChildren: './community/community.module#CommunityModule'},
+            //   { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
+        ]),
+        HttpClientModule, // provides HttpClient for HttpLink
+        ApolloModule,
+        HttpLinkModule
+    ],
+    providers: [
+        HostnameService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

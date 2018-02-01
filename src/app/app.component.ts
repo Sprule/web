@@ -1,3 +1,4 @@
+import { HostnameService } from './services/hostname.service';
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ApolloModule, Apollo } from 'apollo-angular';
@@ -18,11 +19,13 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 export class AppComponent {
     constructor(
         apollo: Apollo,
-        httpLink: HttpLink
+        httpLink: HttpLink,
+        hostname: HostnameService
     ) {
         apollo.create({
             link: httpLink.create({ uri: 'http://localhost:3000/graphql' }),
             cache: new InMemoryCache()
         });
+        
     }
 }
