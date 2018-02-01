@@ -1,3 +1,5 @@
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { AuthService } from './services/auth.service';
 import { HostnameService } from './services/hostname.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,6 +13,8 @@ import { AppComponent } from './app.component';
 import { MarketingComponent } from './marketing/marketing.component';
 import { LoginComponent } from './global/login/login.component';
 import { MatButtonModule } from '@angular/material';
+import { Apollo } from 'apollo-angular/Apollo';
+import { HttpLink } from 'apollo-angular-link-http/HttpLink';
 
 @NgModule({
     declarations: [
@@ -32,8 +36,21 @@ import { MatButtonModule } from '@angular/material';
         MatButtonModule
     ],
     providers: [
-        HostnameService
+        HostnameService,
+        AuthService
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+    constructor(
+        apollo: Apollo,
+        httpLink: HttpLink
+    ) {
+        apollo.create({
+            // By default, this client will send queries to the
+            // `/graphql` endpoint on the same host
+            link: httpLink.create({uri: 'http://localhost:3000/graphql'}),
+            cache: new InMemoryCache()
+        });
+    }
+}

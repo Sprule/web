@@ -4,6 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ApolloModule, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -18,14 +19,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 })
 export class AppComponent {
     constructor(
-        apollo: Apollo,
-        httpLink: HttpLink,
-        hostname: HostnameService
-    ) {
-        apollo.create({
-            link: httpLink.create({ uri: 'http://localhost:3000/graphql' }),
-            cache: new InMemoryCache()
-        });
-        
-    }
+        hostname: HostnameService,
+        auth: AuthService
+    ) { };
 }
