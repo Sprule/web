@@ -5,10 +5,12 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ApolloModule } from 'apollo-angular';
 import { HttpLinkModule } from 'apollo-angular-link-http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { MarketingComponent } from './marketing/marketing.component';
 import { LoginComponent } from './global/login/login.component';
+import { MatButtonModule } from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -25,7 +27,9 @@ import { LoginComponent } from './global/login/login.component';
         ]),
         HttpClientModule, // provides HttpClient for HttpLink
         ApolloModule,
-        HttpLinkModule
+        HttpLinkModule,
+        BrowserAnimationsModule,
+        MatButtonModule
     ],
     providers: [
         HostnameService
