@@ -33,8 +33,25 @@ export class AuthService {
         });
     }
 
-    public ghostLogin() {
-        
+    public async ghostLogin(): Promise<boolean> {
+        if (this.platform.isBrowser() && this.getToken()) {
+            this.apollo.mutate({
+                mutation: gql`
+                    mutation ghostLogin($token: String!) {
+                        ghostLogin(token: $token)
+                    }
+                `,
+                variables: {
+                    token: this.getToken()
+                }
+            }).subscribe(({ data }) => {
+                return true;
+            }, error => {
+                return false;
+            })
+        } else {
+            return false;
+        }
     }
 
     public isAuthed(): boolean {
