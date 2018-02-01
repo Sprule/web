@@ -15,6 +15,8 @@ import { LoginComponent } from './global/login/login.component';
 import { MatButtonModule } from '@angular/material';
 import { Apollo } from 'apollo-angular/Apollo';
 import { HttpLink } from 'apollo-angular-link-http/HttpLink';
+import { ApolloLink, concat } from 'apollo-link';
+import { HttpHeaders } from '@angular/common/http/src/headers';
 
 @NgModule({
     declarations: [
@@ -46,10 +48,19 @@ export class AppModule {
         apollo: Apollo,
         httpLink: HttpLink
     ) {
-        apollo.create({
-            // By default, this client will send queries to the
-            // `/graphql` endpoint on the same host
-            link: httpLink.create({uri: 'http://localhost:3000/graphql'}),
+        const http = httpLink.create({ uri: 'http://localhost:3000/graphql' });
+
+        const authMiddleware = new ApolloLink((operation, forward) => {
+            // add the authorization to the headers
+            operation.setContext({
+                headers: new HttpHeaders().set('Authorization', localStorage.getItem('token') || null)
+            });
+
+            return forward(operation);
+        });
+
+        apollo.create({   
+            link: concat(authMiddleware, http),
             cache: new InMemoryCache()
         });
     }
