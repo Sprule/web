@@ -6,19 +6,19 @@ import { ApolloModule } from 'apollo-angular';
 import { HttpLinkModule } from 'apollo-angular-link-http';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { MarketingComponent } from './marketing/marketing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    MarketingComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full'},
-      { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'},
-      { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
+      { path: 'home', component: MarketingComponent, pathMatch: 'full'},
+      { path: '', loadChildren: './community/community.module#CommunityModule'},
+    //   { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
       ]),
       HttpClientModule, // provides HttpClient for HttpLink
       ApolloModule,

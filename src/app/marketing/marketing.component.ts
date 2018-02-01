@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'home',
   template: `<h3>{{ message }}</h3>`
 })
-export class HomeComponent implements OnInit {
+export class MarketingComponent implements OnInit {
   public message: string;
 
   constructor() {}
