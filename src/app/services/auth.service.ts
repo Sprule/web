@@ -3,13 +3,14 @@ import { Apollo } from 'apollo-angular/Apollo';
 import gql from 'graphql-tag';
 import { PLATFORM_ID } from '@angular/core/src/application_tokens';
 import { isPlatformBrowser } from '@angular/common/src/platform_id';
+import { PlatformService } from './platform.service';
 
 @Injectable()
 export class AuthService {
 
     constructor(
         public apollo: Apollo,
-        @Inject(PLATFORM_ID) public platformId: Object
+        public platform: PlatformService
     ) { 
         this.login('test', 'test');
     }
@@ -41,7 +42,7 @@ export class AuthService {
     } 
     
     public getToken(): string {
-        if (isPlatformBrowser(this.platformId)) {
+        if (this.platform.isBrowser()) {
             return localStorage.getItem('token');
         } else {
             return null;
@@ -49,7 +50,7 @@ export class AuthService {
     }
 
     public setToken(token: string) {
-        if (isPlatformBrowser(this.platformId)) {
+        if (this.platform.isBrowser()) {
             localStorage.setItem('token', token);
         }
     }

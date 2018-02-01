@@ -17,6 +17,7 @@ import { Apollo } from 'apollo-angular/Apollo';
 import { HttpLink } from 'apollo-angular-link-http/HttpLink';
 import { ApolloLink, concat } from 'apollo-link';
 import { HttpHeaders } from '@angular/common/http/src/headers';
+import { PlatformService } from './services/platform.service';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,10 @@ import { HttpHeaders } from '@angular/common/http/src/headers';
 export class AppModule { 
     constructor(
         apollo: Apollo,
-        httpLink: HttpLink
+        httpLink: HttpLink,
+        hostname: HostnameService,
+        auth: AuthService,
+        platform: PlatformService
     ) {
         const http = httpLink.create({ uri: 'http://localhost:3000/graphql' });
 

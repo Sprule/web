@@ -19,7 +19,6 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
     constructor(
-        hostname: HostnameService,
-        auth: AuthService
+        
     ) { };
 }
