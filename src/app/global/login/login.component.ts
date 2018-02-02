@@ -13,6 +13,7 @@ import { FormBuilder } from '@angular/forms/';
 export class LoginComponent {
     loading: boolean = false;
     loginFormGroup: FormGroup;
+    hidePassword: boolean = true;
 
     constructor(
         public auth: AuthService,
