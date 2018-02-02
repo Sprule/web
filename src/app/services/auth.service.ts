@@ -18,7 +18,7 @@ export class AuthService {
     public async login(email: string, password: string) {
 
         try {
-            let data = await this.apollo.mutate({
+            let result = await this.apollo.mutate({
                 mutation: gql`
                 mutation login($email: String!, $password: String!) {
                     login(email: $email, password: $password)
@@ -30,10 +30,10 @@ export class AuthService {
                 }
             }).toPromise();
 
-            console.log('got data', data);
-            this.setToken(data.login);
+            console.log('Got login data: ' + result);
+            this.setToken(result.data.login);
         } catch (err) {
-            console.log('there was an error sending the query', err);
+            console.log('Login error: ' + err);
             this.removeToken();
 
             throw 'Invalid email & password.'
@@ -42,42 +42,54 @@ export class AuthService {
 
     public async ghostLogin(): Promise<boolean> {
         if (this.platform.isBrowser() && this.getToken()) {
-            this.apollo.mutate({
-                mutation: gql`
+            try {
+                await this.apollo.mutate({
+                    mutation: gql`
                     mutation ghostLogin($token: String!) {
                         ghostLogin(token: $token)
                     }
                 `,
-                variables: {
-                    token: this.getToken()
-                }
-            }).subscribe(({ data }) => {
+                    variables: {
+                        token: this.getToken()
+                    }
+                })
                 return true;
-            }, err => {
+            } catch (err) {
                 return false;
-            })
+            }
         } else {
             return false;
         }
     }
 
     public async register(name: string, email: string, password: string) {
-        this.apollo.mutate({
-            mutation: gql`
+        try {
+            console.log(name, email, password);
+            let result = await this.apollo.mutate({
+                mutation: gql`
                 mutation register($name: String!, $email: String!, $password: String!) {
                     register(name: $name, email: $email, password: $password)
                 }
             `,
-            variables: {
-                name: name,
-                email: email,
-                password: password
+                variables: {
+                    name: name,
+                    email: email,
+                    password: password
+                }
+            }).toPromise();
+
+            console.log('register data: ' + result.data.register);
+            this.setToken(result.data.register);
+
+            return true;
+        } catch (err) {
+            console.log(err);
+            if (err.networkError) {
+                throw 'Connection failed. Please try again';
+            } else {
+                throw err.message.split('GraphQL error: ')[1];
             }
-        }).subscribe(({ data }) => {
-            
-        }, err => {
-            
-        })
+        }
     }
 
     public isAuthed(): boolean {
@@ -94,7 +106,7 @@ export class AuthService {
 
     public setToken(token: string) {
         if (this.platform.isBrowser()) {
-            localStorage.setItem('token', token);
+            localStorage.setItem('token', 'Bearer ' + token);
         }
     }
 

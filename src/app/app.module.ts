@@ -19,18 +19,21 @@ import { ApolloLink, concat } from 'apollo-link';
 import { HttpHeaders } from '@angular/common/http';
 import { PlatformService } from './services/platform.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './global/register/register.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         MarketingComponent,
         LoginComponent,
+        RegisterComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'my-app'}),
         RouterModule.forRoot([
             { path: 'home', component: MarketingComponent, pathMatch: 'full' },
             { path: 'login', component: LoginComponent, pathMatch: 'full' },
+            { path: 'register', component: RegisterComponent, pathMatch: 'full' },
             { path: '', loadChildren: './community/community.module#CommunityModule'},
             //   { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
         ]),

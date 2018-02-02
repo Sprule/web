@@ -1,0 +1,22 @@
+<form fxLayout="column" [formGroup]="formGroup" (submit)="register(name.value, email.value, password.value)">
+    <mat-form-field fxFlex>
+        <input matInput placeholder="Pick a username" formControlName="nameCtrl" #name>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+        <input matInput placeholder="Enter your email" formControlName="emailCtrl" #email>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+        <input matInput placeholder="Choose a password" formControlName="passwordCtrl" [type]="hidePassword ? 'password' : 'text'"
+            #password>
+        <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+
+    <br>
+
+    <div fxLayoutAlign='end center' fxLayoutGap="10px">
+        <button *ngIf="!loading" mat-raised-button [disabled]="!formGroup.valid" color="primary" type="submit" autofocus>Submit</button>
+        <mat-spinner *ngIf="loading" [diameter]="26"></mat-spinner>
+    </div>
+</form>
