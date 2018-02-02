@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular/Apollo';
 import gql from 'graphql-tag';
 import { PLATFORM_ID } from '@angular/core/src/application_tokens';
@@ -12,25 +12,32 @@ export class AuthService {
         public apollo: Apollo,
         public platform: PlatformService
     ) { 
-        this.login('test', 'test');
+        
     }
 
     public async login(email: string, password: string) {
-        this.apollo.mutate({
-            mutation: gql`
+
+        try {
+            let data = await this.apollo.mutate({
+                mutation: gql`
                 mutation login($email: String!, $password: String!) {
                     login(email: $email, password: $password)
                 }
             `,
-            variables: {
-                email: email,
-                password: password
-            }
-        }).subscribe(({ data }) => {
+                variables: {
+                    email: email,
+                    password: password
+                }
+            }).toPromise();
+
             console.log('got data', data);
-        }, (error) => {
-            console.log('there was an error sending the query', error);
-        });
+            this.setToken(data.login);
+        } catch (err) {
+            console.log('there was an error sending the query', err);
+            this.removeToken();
+
+            throw 'Invalid email & password.'
+        }
     }
 
     public async ghostLogin(): Promise<boolean> {
@@ -46,12 +53,31 @@ export class AuthService {
                 }
             }).subscribe(({ data }) => {
                 return true;
-            }, error => {
+            }, err => {
                 return false;
             })
         } else {
             return false;
         }
+    }
+
+    public async register(name: string, email: string, password: string) {
+        this.apollo.mutate({
+            mutation: gql`
+                mutation register($name: String!, $email: String!, $password: String!) {
+                    register(name: $name, email: $email, password: $password)
+                }
+            `,
+            variables: {
+                name: name,
+                email: email,
+                password: password
+            }
+        }).subscribe(({ data }) => {
+            
+        }, err => {
+            
+        })
     }
 
     public isAuthed(): boolean {
@@ -69,6 +95,12 @@ export class AuthService {
     public setToken(token: string) {
         if (this.platform.isBrowser()) {
             localStorage.setItem('token', token);
+        }
+    }
+
+    public removeToken() {
+        if (this.platform.isBrowser()) {
+            localStorage.removeItem('token');
         }
     }
 }

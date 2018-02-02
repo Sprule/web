@@ -12,12 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MarketingComponent } from './marketing/marketing.component';
 import { LoginComponent } from './global/login/login.component';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule, MatInputModule } from '@angular/material';
 import { Apollo } from 'apollo-angular/Apollo';
 import { HttpLink } from 'apollo-angular-link-http/HttpLink';
 import { ApolloLink, concat } from 'apollo-link';
-import { HttpHeaders } from '@angular/common/http/src/headers';
+import { HttpHeaders } from '@angular/common/http';
 import { PlatformService } from './services/platform.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { PlatformService } from './services/platform.service';
     imports: [
         BrowserModule.withServerTransition({appId: 'my-app'}),
         RouterModule.forRoot([
-            { path: 'home', component: MarketingComponent, pathMatch: 'full'},
+            { path: 'home', component: MarketingComponent, pathMatch: 'full' },
+            { path: 'login', component: LoginComponent, pathMatch: 'full' },
             { path: '', loadChildren: './community/community.module#CommunityModule'},
             //   { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
         ]),
@@ -36,11 +38,13 @@ import { PlatformService } from './services/platform.service';
         ApolloModule,
         HttpLinkModule,
         BrowserAnimationsModule,
-        MatButtonModule
+        MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule,
+        MatProgressSpinnerModule, MatSnackBarModule, MatInputModule
     ],
     providers: [
         HostnameService,
-        AuthService
+        AuthService,
+        PlatformService
     ],
     bootstrap: [AppComponent]
 })
@@ -56,9 +60,11 @@ export class AppModule {
 
         const authMiddleware = new ApolloLink((operation, forward) => {
             // add the authorization to the headers
-            operation.setContext({
-                headers: new HttpHeaders().set('Authorization', localStorage.getItem('token') || null)
-            });
+            if (auth.isAuthed()) {
+                operation.setContext({
+                    headers: new HttpHeaders().set('Authorization', auth.getToken())
+                });   
+            }
 
             return forward(operation);
         });
@@ -67,5 +73,7 @@ export class AppModule {
             link: concat(authMiddleware, http),
             cache: new InMemoryCache()
         });
+
+        auth.ghostLogin();
     }
 }

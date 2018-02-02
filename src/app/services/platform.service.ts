@@ -1,6 +1,6 @@
-import { isPlatformBrowser } from '@angular/common/src/platform_id';
+import { isPlatformBrowser } from '@angular/common';
 import { Injectable, Inject } from '@angular/core';
-import { PLATFORM_ID } from '@angular/core/src/application_tokens';
+import { PLATFORM_ID } from '@angular/core';
 
 @Injectable()
 export class PlatformService {

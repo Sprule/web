@@ -1,0 +1,18 @@
+<form fxLayout="column" [formGroup]="loginFormGroup" (submit)="login(email.value, password.value)">
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Enter your email" formControlName="emailCtrl" #email>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Enter your password" formControlName="passwordCtrl" [type]="hidePassword ? 'password' : 'text'"
+            #password>
+        <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+
+    <br>
+
+    <div fxLayoutAlign='end center' fxLayoutGap="10px">
+        <button *ngIf="!loading" mat-raised-button [disabled]="!loginFormGroup.valid" color="primary" type="submit" autofocus>Login</button>
+        <mat-spinner *ngIf="loading" [diameter]="26"></mat-spinner>
+    </div>
+</form>
