@@ -1,8 +1,8 @@
+import { CommunityService } from './services/community.service';
 import { GuardService } from './services/guard.service';
 import { AuthGuard } from './guards/auth.guard';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { AuthService } from './services/auth.service';
-import { HostnameService } from './services/hostname.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -23,6 +23,7 @@ import { PlatformService } from './services/platform.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './global/register/register.component';
 import { CreateComponent } from './global/create/create.component';
+import { CommunityGuard } from './guards/community.guard';
 
 @NgModule({
     declarations: [
@@ -50,11 +51,12 @@ import { CreateComponent } from './global/create/create.component';
         MatProgressSpinnerModule, MatSnackBarModule, MatInputModule, MatCardModule
     ],
     providers: [
-        HostnameService,
+        CommunityService,
         AuthService,
         PlatformService,
         AuthGuard,
-        GuardService
+        GuardService,
+        CommunityGuard
     ],
     bootstrap: [AppComponent]
 })
@@ -62,7 +64,7 @@ export class AppModule {
     constructor(
         apollo: Apollo,
         httpLink: HttpLink,
-        hostname: HostnameService,
+        communityService: CommunityService,
         auth: AuthService,
         platform: PlatformService
     ) {

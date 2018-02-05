@@ -1,7 +1,9 @@
+import { CommunityService } from './community.service';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular/Apollo';
 import { Router } from '@angular/router';
+import gql from 'graphql-tag';
 
 @Injectable()
 export class GuardService {
@@ -9,7 +11,8 @@ export class GuardService {
     constructor(
         public apollo: Apollo,
         public authService: AuthService,
-        public router: Router
+        public router: Router,
+        public communityService: CommunityService
     ) {
         
     }
@@ -37,4 +40,11 @@ export class GuardService {
             return false;
         }
     }    
+
+    async initCommunity() {
+        if (!this.communityService.community) {
+            return await this.communityService.initCommunity();
+        }
+        return true;
+    }
 }

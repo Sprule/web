@@ -1,4 +1,3 @@
-import { HostnameService } from '../services/hostname.service';
 import { NgModule, Component } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component'

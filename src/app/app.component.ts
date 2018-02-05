@@ -1,4 +1,3 @@
-import { HostnameService } from './services/hostname.service';
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ApolloModule, Apollo } from 'apollo-angular';
