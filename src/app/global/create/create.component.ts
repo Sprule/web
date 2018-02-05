@@ -4,6 +4,8 @@ import { ViewEncapsulation } from '@angular/core'
 import { FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Apollo } from 'apollo-angular/Apollo';
+import { MatSnackBar } from '@angular/material';
+import gql from 'graphql-tag';
 
 @Component({
     selector: 'app-create',
@@ -17,7 +19,8 @@ export class CreateComponent implements OnInit {
 
     constructor(
         public formBuilder: FormBuilder,
-        public apollo: Apollo
+        public apollo: Apollo,
+        public snackar: MatSnackBar
     ) {
         this.formGroup = this.formBuilder.group({
             nameCtrl: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
@@ -25,8 +28,30 @@ export class CreateComponent implements OnInit {
         });
     }
 
-    create(name: string, subdomain: string) {
+    async create(name: string, subdomain: string) {
+        try {
+            let result = await this.apollo.mutate({
+                mutation: gql`
+                    mutation createCommunity($name: String!, $subdomain: String!) {
+                        createCommunity(name: $name, subdomain: $subdomain)
+                    }
+                `,
+                variables: {
+                    name: name,
+                    subdomain: subdomain
+                }
+            }).toPromise();
 
+            let createdSubdomain = result.data.createCommunity;
+
+            // Route to the community            
+            window.location.href = 'https://' + createdSubdomain + '.forums.gg';
+        } catch (error) {
+            console.log(error);
+            this.snackar.open(error, 'close', {
+                duration: 10000
+            });
+        }
     }
 
     ngOnInit() {
