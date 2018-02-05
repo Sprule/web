@@ -7,6 +7,7 @@ import { PlatformService } from './platform.service';
 
 @Injectable()
 export class AuthService {
+    authed: boolean = false;
 
     constructor(
         public apollo: Apollo,
@@ -31,9 +32,11 @@ export class AuthService {
             }).toPromise();
 
             console.log('Got login data: ' + result);
+            this.authed = true;
             this.setToken(result.data.login);
         } catch (err) {
             console.log('Login error: ' + err);
+            this.authed = false;
             this.removeToken();
 
             throw 'Invalid email & password.'
@@ -53,11 +56,14 @@ export class AuthService {
                         token: this.getToken()
                     }
                 })
+                this.authed = true;
                 return true;
             } catch (err) {
+                this.authed = false;
                 return false;
             }
         } else {
+            this.authed = false;
             return false;
         }
     }
@@ -79,6 +85,7 @@ export class AuthService {
             }).toPromise();
 
             console.log('register data: ' + result.data.register);
+            this.authed = true;
             this.setToken(result.data.register);
 
             return true;
@@ -93,8 +100,8 @@ export class AuthService {
     }
 
     public isAuthed(): boolean {
-        return this.getToken() != null;
-    } 
+        return this.authed;
+    }
     
     public getToken(): string {
         if (this.platform.isBrowser()) {

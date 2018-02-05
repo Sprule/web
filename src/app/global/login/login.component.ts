@@ -6,9 +6,9 @@ import { Validators } from '@angular/forms/';
 import { FormBuilder } from '@angular/forms/';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: 'login.component.html',
-  styles: []
+    selector: 'app-login',
+    templateUrl: 'login.component.html',
+    styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
     loading: boolean = false;

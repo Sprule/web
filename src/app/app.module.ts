@@ -1,3 +1,5 @@
+import { GuardService } from './services/guard.service';
+import { AuthGuard } from './guards/auth.guard';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { AuthService } from './services/auth.service';
 import { HostnameService } from './services/hostname.service';
@@ -12,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MarketingComponent } from './marketing/marketing.component';
 import { LoginComponent } from './global/login/login.component';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule, MatInputModule, MatCardModule } from '@angular/material';
 import { Apollo } from 'apollo-angular/Apollo';
 import { HttpLink } from 'apollo-angular-link-http/HttpLink';
 import { ApolloLink, concat } from 'apollo-link';
@@ -20,6 +22,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { PlatformService } from './services/platform.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './global/register/register.component';
+import { CreateComponent } from './global/create/create.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +30,7 @@ import { RegisterComponent } from './global/register/register.component';
         MarketingComponent,
         LoginComponent,
         RegisterComponent,
+        CreateComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'my-app'}),
@@ -34,6 +38,7 @@ import { RegisterComponent } from './global/register/register.component';
             { path: 'home', component: MarketingComponent, pathMatch: 'full' },
             { path: 'login', component: LoginComponent, pathMatch: 'full' },
             { path: 'register', component: RegisterComponent, pathMatch: 'full' },
+            { path: 'create', component: CreateComponent, pathMatch: 'full', canActivate: [AuthGuard] },
             { path: '', loadChildren: './community/community.module#CommunityModule'},
             //   { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
         ]),
@@ -42,12 +47,14 @@ import { RegisterComponent } from './global/register/register.component';
         HttpLinkModule,
         BrowserAnimationsModule,
         MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule,
-        MatProgressSpinnerModule, MatSnackBarModule, MatInputModule
+        MatProgressSpinnerModule, MatSnackBarModule, MatInputModule, MatCardModule
     ],
     providers: [
         HostnameService,
         AuthService,
-        PlatformService
+        PlatformService,
+        AuthGuard,
+        GuardService
     ],
     bootstrap: [AppComponent]
 })
