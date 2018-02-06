@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './global/register/register.component';
 import { CreateComponent } from './global/create/create.component';
 import { CommunityGuard } from './guards/community.guard';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { CommunityGuard } from './guards/community.guard';
         ApolloModule,
         HttpLinkModule,
         BrowserAnimationsModule,
+        FlexLayoutModule,
         MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule,
         MatProgressSpinnerModule, MatSnackBarModule, MatInputModule, MatCardModule
     ],

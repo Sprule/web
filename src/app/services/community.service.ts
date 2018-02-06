@@ -31,7 +31,8 @@ export class CommunityService {
                 query: gql`
                     query community($subdomain: String!) {
                         community(subdomain: $subdomain) {
-                            _id
+                            _id,
+                            name
                         }
                     }
                 `,

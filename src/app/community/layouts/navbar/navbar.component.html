@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <button mat-button routerLink="/">
+        {{communityService.community.name}}
+    </button>
+
+    <!-- This fills the remaining space of the current row -->
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/forums">Forums</button>
+        <button mat-button routerLink="/about">About</button>
+    </div>
+    <span class="fill-remaining-space"></span>
+    <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+    </button>
+
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item routerLink="/products">Products</button>
+    <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+    <!--<button mat-menu-item>Help</button>-->
+</mat-menu>
+
+<router-outlet></router-outlet>

@@ -13,11 +13,11 @@ export class CommunityGuard implements CanActivate {
     }
 
     async canActivate() {
-        if (!this.guard.auth(false)) {
+        if (! await this.guard.auth(false)) {
             return false;
         }
 
-        if (!this.guard.initCommunity()) {
+        if (! await this.guard.initCommunity()) {
             return false;
         }
 
