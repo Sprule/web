@@ -46,7 +46,7 @@ export class AuthService {
     public async ghostLogin(): Promise<boolean> {
         if (this.platform.isBrowser() && this.getToken()) {
             try {
-                await this.apollo.mutate({
+                let result = await this.apollo.mutate({
                     mutation: gql`
                     mutation ghostLogin($token: String!) {
                         ghostLogin(token: $token)
@@ -55,8 +55,12 @@ export class AuthService {
                     variables: {
                         token: this.getToken()
                     }
-                })
-                this.authed = true;
+                }).toPromise();
+
+                if (result) {
+                    console.log('successful ghost login.');
+                }
+                this.authed = result;
                 return true;
             } catch (err) {
                 this.authed = false;
