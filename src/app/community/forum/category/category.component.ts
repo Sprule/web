@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-category',
   template: `
-    <p>
-      category works!
-    </p>
+    <button mat-button routerLink='/forums/{{id}}'>{{name}}</button>
   `,
   styles: []
 })
 export class CategoryComponent implements OnInit {
+    @Input() name: string;
+    @Input() id: string;
 
-  constructor() { }
+    constructor() {}
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

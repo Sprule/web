@@ -10,10 +10,12 @@ import { SidebarComponent } from './forum/sidebar/sidebar.component';
 import { PostComponent } from './forum/post/post.component';
 import { TopicComponent } from './forum/topic/topic.component';
 import { CategoryComponent } from './forum/category/category.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [HomeComponent, NavbarComponent, TopicIndexComponent, SidebarComponent, PostComponent, TopicComponent, CategoryComponent],
     imports: [
+        CommonModule,
         RouterModule.forChild([
             {
                 path: '', component: NavbarComponent, canActivate: [CommunityGuard], children: [
