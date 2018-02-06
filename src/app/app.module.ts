@@ -85,7 +85,5 @@ export class AppModule {
             link: concat(authMiddleware, http),
             cache: new InMemoryCache()
         });
-
-        auth.ghostLogin();
     }
 }

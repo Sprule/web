@@ -20,27 +20,29 @@ export class CommunityService {
 
         let subdomain;
         if (hostname == 'localhost') {
-            subdomain = 'dev';
+            subdomain = 'test';
         } else {
             subdomain = hostname.split('.')[0];
         }
         console.log('subdomain: ' + subdomain);
 
         try {
-            let result = await this.apollo.query({
+            let result: any = await this.apollo.query({
                 query: gql`
-                query community($subdomain: String!) {
-                    community(subdomain: $subdomain) {
-                        _id
+                    query community($subdomain: String!) {
+                        community(subdomain: $subdomain) {
+                            _id
+                        }
                     }
-                }
-            `,
+                `,
                 variables: {
                     subdomain: subdomain
                 }
             }).toPromise();
-            this.community = (result.data as any).community;
-            return true;
+
+            console.log('community result: ' + JSON.stringify(result));
+            this.community = result.data.community;
+            return true;  
         } catch (error) {
             console.log('Unable to find community. Error: ' + error);
             return false;
