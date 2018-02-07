@@ -28,7 +28,7 @@ import { NavbarModule } from '../navbar/navbar.module';
                             { path: '', component: TopicIndexComponent, pathMatch: 'full' }
                         ]
                     },
-                    { path: 'admin', loadChildren: './community/admin/admin.module#AdminModule' },
+                    { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
                 ]
             }
         ]),
