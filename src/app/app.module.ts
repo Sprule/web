@@ -41,7 +41,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
             { path: 'login', component: LoginComponent, pathMatch: 'full' },
             { path: 'register', component: RegisterComponent, pathMatch: 'full' },
             { path: 'create', component: CreateComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-            { path: '', loadChildren: './community/community.module#CommunityModule'},
+            { path: '', loadChildren: './community/community.module#CommunityModule' },
+            { path: 'admin', loadChildren: './community/admin/admin.module#AdminModule' },
             //   { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
         ]),
         HttpClientModule, // provides HttpClient for HttpLink

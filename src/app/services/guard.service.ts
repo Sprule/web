@@ -39,12 +39,16 @@ export class GuardService {
             this.router.navigateByUrl('/login');
             return false;
         }
-    }    
+    }
 
     async initCommunity() {
         if (!this.communityService.community) {
             return await this.communityService.initCommunity();
         }
         return true;
+    }
+    
+    async admin() {
+        
     }
 }
