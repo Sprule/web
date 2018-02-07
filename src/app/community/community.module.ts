@@ -1,5 +1,5 @@
+import { NavbarComponent } from './../navbar/navbar.component';
 import { AdminHomeComponent } from './admin/home/home.component';
-import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { NgModule, Component } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component'

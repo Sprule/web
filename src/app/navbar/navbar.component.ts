@@ -1,4 +1,4 @@
-import { CommunityService } from './../../../services/community.service';
+import { CommunityService } from '../services/community.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
