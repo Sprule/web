@@ -15,6 +15,7 @@ export class CommunityAdminGuard implements CanActivate {
     }
 
     async canActivate() {
+        console.log('community admin check...');
         if (! await this.guard.auth(false)) {
             return false;
         }
@@ -23,10 +24,12 @@ export class CommunityAdminGuard implements CanActivate {
             return false;
         }
 
+        console.log('checking for admin permission.');        
         if (!this.community.hasPermission('admin')) {
             return false;
         }
 
+        console.log('community admin success');
         return true;
     }
 }

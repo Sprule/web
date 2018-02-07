@@ -49,6 +49,6 @@ export class GuardService {
     }
     
     async admin() {
-        
+        return this.communityService.hasPermission('admin');
     }
 }

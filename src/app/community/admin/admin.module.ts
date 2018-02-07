@@ -7,17 +7,15 @@ import { CommunityGuard } from '../../guards/community.guard';
 import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
+import { NavbarModule } from '../../navbar/navbar.module';
 
 @NgModule({
-    declarations: [NavbarComponent],
+    declarations: [AdminHomeComponent],
     imports: [
         CommonModule,
+        NavbarModule,
         RouterModule.forChild([
-            {
-                path: '', component: NavbarComponent, canActivate: [CommunityAdminGuard], children: [
-                    { path: '', component: AdminHomeComponent, pathMatch: 'full' }
-                ]
-            }
+            { path: '', component: AdminHomeComponent }
         ]),
         MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule,
         FlexLayoutModule

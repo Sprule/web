@@ -1,3 +1,4 @@
+import { AdminHomeComponent } from './admin/home/home.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { NgModule, Component } from '@angular/core'
 import { RouterModule } from '@angular/router';
@@ -11,11 +12,13 @@ import { PostComponent } from './forum/post/post.component';
 import { TopicComponent } from './forum/topic/topic.component';
 import { CategoryComponent } from './forum/category/category.component';
 import { CommonModule } from '@angular/common';
+import { NavbarModule } from '../navbar/navbar.module';
 
 @NgModule({
-    declarations: [HomeComponent, NavbarComponent, TopicIndexComponent, SidebarComponent, PostComponent, TopicComponent, CategoryComponent],
+    declarations: [HomeComponent, TopicIndexComponent, SidebarComponent, PostComponent, TopicComponent, CategoryComponent],
     imports: [
         CommonModule,
+        NavbarModule,
         RouterModule.forChild([
             {
                 path: '', component: NavbarComponent, canActivate: [CommunityGuard], children: [
@@ -23,7 +26,9 @@ import { CommonModule } from '@angular/common';
                     {
                         path: 'forums', component: SidebarComponent, children: [
                             { path: '', component: TopicIndexComponent, pathMatch: 'full' }
-                    ]}
+                        ]
+                    },
+                    { path: 'admin', loadChildren: './community/admin/admin.module#AdminModule' },
                 ]
             }
         ]),

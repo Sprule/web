@@ -1,3 +1,4 @@
+import { CommunityAdminGuard } from './guards/community-admin.guard';
 import { CommunityService } from './services/community.service';
 import { GuardService } from './services/guard.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -14,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MarketingComponent } from './marketing/marketing.component';
 import { LoginComponent } from './global/login/login.component';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule, MatInputModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule, MatInputModule, MatCardModule, MatToolbarModule, MatMenuModule } from '@angular/material';
 import { Apollo } from 'apollo-angular/Apollo';
 import { HttpLink } from 'apollo-angular-link-http/HttpLink';
 import { ApolloLink, concat } from 'apollo-link';
@@ -32,7 +33,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
         MarketingComponent,
         LoginComponent,
         RegisterComponent,
-        CreateComponent,
+        CreateComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'my-app'}),
@@ -42,7 +43,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
             { path: 'register', component: RegisterComponent, pathMatch: 'full' },
             { path: 'create', component: CreateComponent, pathMatch: 'full', canActivate: [AuthGuard] },
             { path: '', loadChildren: './community/community.module#CommunityModule' },
-            { path: 'admin', loadChildren: './community/admin/admin.module#AdminModule' },
+            { path: 'admin', loadChildren: './community/community.module#CommunityModule' }
             //   { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
         ]),
         HttpClientModule, // provides HttpClient for HttpLink
@@ -51,7 +52,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
         BrowserAnimationsModule,
         FlexLayoutModule,
         MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule,
-        MatProgressSpinnerModule, MatSnackBarModule, MatInputModule, MatCardModule
+        MatProgressSpinnerModule, MatSnackBarModule, MatInputModule, MatCardModule,
+        MatButtonModule, MatIconModule, MatToolbarModule, MatMenuModule, MatIconModule,
+        FlexLayoutModule
     ],
     providers: [
         CommunityService,
@@ -59,7 +62,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
         PlatformService,
         AuthGuard,
         GuardService,
-        CommunityGuard
+        CommunityGuard,
+        CommunityAdminGuard
     ],
     bootstrap: [AppComponent]
 })
