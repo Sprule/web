@@ -93,7 +93,7 @@ export class CommunityService {
     
     public hasPermission(node: string): boolean {
         for (let role of this.roles) {
-            if (role.permissions.indexOf(node) > -1) {
+            if (role.permissions.indexOf(node) > -1 || node === '*') {
                 return true;
             }
         }
