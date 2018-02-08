@@ -4,11 +4,12 @@ import { AdminHomeComponent } from './home/home.component';
 import { NgModule, Component } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { CommunityGuard } from '../../guards/community.guard';
-import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { NavbarModule } from '../../navbar/navbar.module';
 import { AdminCategoriesComponent } from './categories/categories.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent],
@@ -24,6 +25,7 @@ import { AdminCategoriesComponent } from './categories/categories.component';
             }
         ]),
         MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule,
+        ReactiveFormsModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule,
         FlexLayoutModule
     ]
 })

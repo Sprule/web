@@ -1,1 +1,22 @@
-Categories
+<div fxFlexLayout='column' fxLayoutGap='15px' fxLayoutAlign='center'>
+    <div fxFlex>
+        <button *ngFor='let category of categories' mat-button>{{category.name}}</button>
+        <hr>
+        <button mat-button (click)='selectNewCategory()' color='primary'>New Category</button>
+    </div>
+    <div fxFlex *ngIf='selectedCategorty'>
+        
+    </div>
+    <div fxFlex *ngIf='creatingNewCategory'>
+        <form fxLayout="column" [formGroup]="createFormGroup" (submit)="createCategory(name.value)">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Name" formControlName="nameCtrl" #name>
+            </mat-form-field>
+        
+            <div fxLayoutAlign='end center' fxLayoutGap="10px">
+                <button *ngIf="!createLoading" mat-raised-button [disabled]="!createFormGroup.valid" color="primary" type="submit" autofocus>Create</button>
+                <mat-spinner *ngIf="createLoading" [diameter]="26"></mat-spinner>
+            </div>
+        </form>
+    </div>
+</div>
