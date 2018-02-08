@@ -1,0 +1,11 @@
+<mat-sidenav-container class="sidebar-container">
+    <mat-sidenav class='sidebar' mode="side" opened>
+        <mat-nav-list>
+            <a mat-list-item routerLink='/admin'>Home</a>
+            <a mat-list-item routerLink='/admin/categories'>Categories</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
