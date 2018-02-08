@@ -18,6 +18,8 @@ export class AdminCategoriesComponent implements OnInit {
     categories;
 
     selectedCategory;
+    editLoading = false;
+    editFormGroup: FormGroup;
 
     creatingNewCategory = false;
     createLoading = false;
@@ -31,6 +33,10 @@ export class AdminCategoriesComponent implements OnInit {
         public changeDetectorRef: ChangeDetectorRef
     ) {
         this.createFormGroup = this.formBuilder.group({
+            nameCtrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]]
+        })
+
+        this.editFormGroup = this.formBuilder.group({
             nameCtrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]]
         })
     }
@@ -68,10 +74,11 @@ export class AdminCategoriesComponent implements OnInit {
 
     selectCategory(category) {
         this.selectedCategory = category;
+        this.creatingNewCategory = false;
     }
 
     selectNewCategory() {
-        this.selectCategory = null;
+        this.selectedCategory = null;
         this.creatingNewCategory = true;
     }
 
@@ -98,6 +105,31 @@ export class AdminCategoriesComponent implements OnInit {
             })
         }
         this.createLoading = false;
+    }
+
+    async editCategory(category, name) {
+        this.editLoading = true;
+        try {
+            await this.apollo.mutate({
+                mutation: gql`
+                    mutation editCategory($category: ID!, $name: String!) {
+                        editCategory(category: $category, name: $name)
+                    }
+                `,
+                variables: {
+                    category: category._id,
+                    name: name
+                }
+            }).toPromise();
+
+            await this.loadCategories();
+        } catch (error) {
+            console.log(error);
+            this.snackbar.open(error.message, 'close', {
+                duration: 7000
+            })
+        }
+        this.editLoading = false;
     }
 
 }
