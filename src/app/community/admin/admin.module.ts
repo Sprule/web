@@ -10,9 +10,11 @@ import { CommonModule } from '@angular/common';
 import { NavbarModule } from '../../navbar/navbar.module';
 import { AdminCategoriesComponent } from './categories/categories.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminHeaderComponent } from './header/header.component';
+import { ConfirmComponent } from '../../global/dialog/confirm/confirm.component';
 
 @NgModule({
-    declarations: [AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent],
+    declarations: [AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent, AdminHeaderComponent, ConfirmComponent],
     imports: [
         CommonModule,
         NavbarModule,

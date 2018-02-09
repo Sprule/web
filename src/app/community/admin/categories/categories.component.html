@@ -1,5 +1,10 @@
-<div fxFlexLayout='column' fxLayoutGap='15px' fxLayoutAlign='center'>
-    <div fxFlex>
+<app-admin-header 
+    [title]="'Categories'"
+    [subtitle]="'Manage forum categories'">
+ </app-admin-header>
+
+<div fxLayout='row' fxLayoutGap='15px'>
+    <div fxFlex='200px' fxLayout='column' fxLayoutAlign='center start' class='side-list'>
         <button *ngFor='let category of categories' mat-button (click)='selectCategory(category)'>{{category.name}}</button>
         <hr>
         <button mat-button (click)='selectNewCategory()' color='primary'>New Category</button>
@@ -12,8 +17,10 @@
                 <input matInput placeholder="Name" formControlName="nameCtrl" [(ngModel)]='selectedCategory.name' #name>
             </mat-form-field>
         
-            <div fxLayoutAlign='end center' fxLayoutGap="10px">
+            <div fxLayoutGap="10px">
                 <button *ngIf="!editLoading" mat-raised-button [disabled]="!editFormGroup.valid" color="primary" type="submit" autofocus>Submit</button>
+                <button *ngIf="!deleteLoading" mat-raised-button color="warn" type='button' (click)='deleteCategory(selectedCategory)'>Delete</button>
+
                 <mat-spinner *ngIf="editLoading" [diameter]="26"></mat-spinner>
             </div>
         </form>
@@ -26,7 +33,7 @@
                 <input matInput placeholder="Name" formControlName="nameCtrl" #name>
             </mat-form-field>
         
-            <div fxLayoutAlign='end center' fxLayoutGap="10px">
+            <div fxLayoutGap="10px">
                 <button *ngIf="!createLoading" mat-raised-button [disabled]="!createFormGroup.valid" color="primary" type="submit" autofocus>Create</button>
                 <mat-spinner *ngIf="createLoading" [diameter]="26"></mat-spinner>
             </div>
