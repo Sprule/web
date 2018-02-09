@@ -100,6 +100,7 @@ export class AdminCategoriesComponent implements OnInit {
             }).toPromise();
 
             await this.loadCategories();
+            this.creatingNewCategory = false;
         } catch (error) {
             console.log(error);
             this.snackbar.open(error.message, 'close', {
