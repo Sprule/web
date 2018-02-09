@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>{{data.header}}</h1>
+<p class="font-change">{{data.message}}</p>
+<div mat-dialog-actions fxLayoutAlign="end center">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Yes</button>
+</div>

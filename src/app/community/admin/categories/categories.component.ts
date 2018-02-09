@@ -1,8 +1,9 @@
+import { ConfirmDialogComponent } from './../../../global/dialog/confirm/confirm.component';
 import { CommunityService } from './../../../services/community.service';
 import { Apollo } from 'apollo-angular/Apollo';
 import { Component, OnInit } from '@angular/core';
 import gql from 'graphql-tag';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { FormGroup } from '@angular/forms/src/model';
 import { FormBuilder } from '@angular/forms/';
 import { Validators } from '@angular/forms/';
@@ -30,7 +31,8 @@ export class AdminCategoriesComponent implements OnInit {
         public community: CommunityService,
         public snackbar: MatSnackBar,
         public formBuilder: FormBuilder,
-        public changeDetectorRef: ChangeDetectorRef
+        public changeDetectorRef: ChangeDetectorRef,
+        public dialog: MatDialog
     ) {
         this.createFormGroup = this.formBuilder.group({
             nameCtrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]]
@@ -130,6 +132,31 @@ export class AdminCategoriesComponent implements OnInit {
             })
         }
         this.editLoading = false;
+    }
+
+    async deleteCategory(category) {
+        let result = await this.dialog.open(ConfirmDialogComponent, {
+            width: '350px',
+            data: {
+                header: 'Delete Category',
+                message: 'Are you sure you want to delete ' + category.name + '? This cannot be undone.'
+            }
+        }).afterClosed().toPromise();
+
+        if (result) {
+            await this.apollo.mutate({
+                mutation: gql`
+                    mutation deleteCategory($category: ID!) {
+                        deleteCategory(category: $category)
+                    }
+                `,
+                variables: {
+                    category: category._id
+                }
+            }).toPromise();
+
+            await this.loadCategories();
+        }
     }
 
 }

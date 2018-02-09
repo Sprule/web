@@ -3,12 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-dialog-confirm',
-  template: `
-    <p>
-      confirm works!
-    </p>
-  `,
-  styles: []
+  templateUrl: './confirm.component.html',
+  styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmDialogComponent {
 
@@ -18,10 +14,4 @@ export class ConfirmDialogComponent {
     ) {
 
     }
-
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
-
-
 }

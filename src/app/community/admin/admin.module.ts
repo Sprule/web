@@ -4,17 +4,17 @@ import { AdminHomeComponent } from './home/home.component';
 import { NgModule, Component } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { CommunityGuard } from '../../guards/community.guard';
-import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule } from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule, MatDialogModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { NavbarModule } from '../../navbar/navbar.module';
 import { AdminCategoriesComponent } from './categories/categories.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminHeaderComponent } from './header/header.component';
-import { ConfirmComponent } from '../../global/dialog/confirm/confirm.component';
+import { ConfirmDialogComponent } from '../../global/dialog/confirm/confirm.component';
 
 @NgModule({
-    declarations: [AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent, AdminHeaderComponent, ConfirmComponent],
+    declarations: [AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent, AdminHeaderComponent, ConfirmDialogComponent],
     imports: [
         CommonModule,
         NavbarModule,
@@ -27,9 +27,10 @@ import { ConfirmComponent } from '../../global/dialog/confirm/confirm.component'
             }
         ]),
         MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule,
-        ReactiveFormsModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule,
+        ReactiveFormsModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule, MatDialogModule,
         FlexLayoutModule
-    ]
+    ],
+    entryComponents: [ConfirmDialogComponent]
 })
 export class AdminModule {
 
