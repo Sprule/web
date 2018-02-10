@@ -14,7 +14,10 @@ import { AdminHeaderComponent } from './header/header.component';
 import { ConfirmDialogComponent } from '../../global/dialog/confirm/confirm.component';
 
 @NgModule({
-    declarations: [AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent, AdminHeaderComponent, ConfirmDialogComponent],
+    declarations: [
+        AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent,
+        AdminHeaderComponent, ConfirmDialogComponent, Admin
+    ],
     imports: [
         CommonModule,
         NavbarModule,
