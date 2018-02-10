@@ -6,7 +6,7 @@
 <div fxLayout='row' fxLayoutGap='15px'>
     <div fxFlex='200px' fxLayout='column' fxLayoutAlign='center start' class='side-list'>
         <div *ngFor='let category of categories' style='width: 100%'>
-            <button mat-button (click)='selectCategory(category)'>{{category.name}}</button>
+            <button [style.background-color]="category == selectedCategory ? '#dcdcdc' : null" mat-button (click)='selectCategory(category)'>{{category.name}}</button>
         </div>
         <hr>
         <button mat-button (click)='selectNewCategory()' color='primary'>New Category</button>
