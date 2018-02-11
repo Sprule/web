@@ -44,10 +44,10 @@ export class AdminRolesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadCategories();
+        this.loadRoles();
     }
 
-    async loadCategories() {
+    async loadRoles() {
         this.loadingRoles = true;
         let result: any = await this.apollo.query({
             query: gql`
@@ -104,7 +104,7 @@ export class AdminRolesComponent implements OnInit {
                 }
             }).toPromise();
 
-            await this.loadCategories();
+            await this.loadRoles();
             this.creatingNewRole = false;
         } catch (error) {
             console.log(error);
@@ -146,7 +146,7 @@ export class AdminRolesComponent implements OnInit {
                 }
             }).toPromise();
 
-            await this.loadCategories();
+            await this.loadRoles();
         } catch (error) {
             console.log(error);
             this.snackbar.open(error.message, 'close', {
@@ -177,7 +177,7 @@ export class AdminRolesComponent implements OnInit {
                 }
             }).toPromise();
 
-            await this.loadCategories();
+            await this.loadRoles();
         }
     }
 

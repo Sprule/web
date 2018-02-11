@@ -1,27 +1,27 @@
 <app-admin-header 
-    [title]="'Categories'"
-    [subtitle]="'Manage forum categories'">
+    [title]="'Roles'"
+    [subtitle]="'Manage forum roles'">
  </app-admin-header>
 
 <div fxLayout='row' fxLayoutGap='15px'>
     <div fxFlex='200px' fxLayout='column' fxLayoutAlign='center start' class='side-list'>
-        <div *ngFor='let category of categories' style='width: 100%'>
-            <button [style.background-color]="category == selectedCategory ? '#dcdcdc' : null" mat-button (click)='selectCategory(category)'>{{category.name}}</button>
+        <div *ngFor='let role of roles' style='width: 100%'>
+            <button [style.background-color]="role == selectedRole ? '#dcdcdc' : null" mat-button (click)='selectRole(role)'>{{role.name}}</button>
         </div>
         <hr>
-        <button mat-button (click)='selectNewCategory()' color='primary'>New Category</button>
+        <button mat-button (click)='selectNewRole()' color='primary'>New Role</button>
     </div>
 
     <!-- Edit -->
-    <div fxFlex *ngIf='selectedCategory && !creatingNewCategory'>
-        <form fxLayout="column" [formGroup]="editFormGroup" (submit)="editCategory(selectedCategory, name.value)">
+    <div fxFlex *ngIf='selectedRole && !creatingNewRole'>
+        <form fxLayout="column" [formGroup]="editFormGroup" (submit)="editRole(selectedRole, name.value)">
             <mat-form-field class="full-width">
-                <input matInput placeholder="Name" formControlName="nameCtrl" [(ngModel)]='selectedCategory.name' #name>
+                <input matInput placeholder="Name" formControlName="nameCtrl" [(ngModel)]='selectedRole.name' #name>
             </mat-form-field>
         
             <div fxLayoutGap="10px">
                 <button *ngIf="!editLoading" mat-raised-button [disabled]="!editFormGroup.valid" color="primary" type="submit" autofocus>Submit</button>
-                <button *ngIf="!deleteLoading" mat-raised-button color="warn" type='button' (click)='deleteCategory(selectedCategory)'>Delete</button>
+                <button *ngIf="!deleteLoading" mat-raised-button color="warn" type='button' (click)='deleteRole(selectedRole)'>Delete</button>
 
                 <mat-spinner *ngIf="editLoading" [diameter]="26"></mat-spinner>
             </div>
@@ -29,8 +29,8 @@
     </div>
 
     <!-- Create -->
-    <div fxFlex *ngIf='creatingNewCategory'>
-        <form fxLayout="column" [formGroup]="createFormGroup" (submit)="createCategory(name.value)">
+    <div fxFlex *ngIf='creatingNewRole'>
+        <form fxLayout="column" [formGroup]="createFormGroup" (submit)="createRole(name.value)">
             <mat-form-field class="full-width">
                 <input matInput placeholder="Name" formControlName="nameCtrl" #name>
             </mat-form-field>
