@@ -5,7 +5,7 @@ import { AdminHomeComponent } from './home/home.component';
 import { NgModule, Component } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { CommunityGuard } from '../../guards/community.guard';
-import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule, MatDialogModule } from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule, MatDialogModule, MatSlideToggleModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { NavbarModule } from '../../navbar/navbar.module';
@@ -33,6 +33,7 @@ import { ConfirmDialogComponent } from '../../global/dialog/confirm/confirm.comp
         ]),
         MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule,
         ReactiveFormsModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule, MatDialogModule,
+        MatSlideToggleModule,
         FlexLayoutModule
     ],
     entryComponents: [ConfirmDialogComponent]

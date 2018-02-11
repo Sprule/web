@@ -39,7 +39,10 @@ export class AdminRolesComponent implements OnInit {
         })
 
         this.editFormGroup = this.formBuilder.group({
-            nameCtrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]]
+            nameCtrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]],
+            tagNameCtrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]],
+            tagBackgroundColorCtrl: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+            tagTextColorCtrl: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
         })
     }
 
@@ -69,27 +72,27 @@ export class AdminRolesComponent implements OnInit {
             fetchPolicy: 'network-only'
         }).toPromise();
 
-        this.roles = result.data.categories;
+        this.roles = result.data.roles;
         this.loadingRoles = false;
         console.log(this.roles);
 
-        // Autoselect the first category.
+        // Autoselect the first role.
         if (this.roles.length > 0) {
             this.selectedRole = this.roles[0];
         }
     }
 
-    selectCategory(category) {
-        this.selectedRole = category;
+    selectRole(role) {
+        this.selectedRole = role;
         this.creatingNewRole = false;
     }
 
-    selectNewCategory() {
+    selectNewRole() {
         this.selectedRole = null;
         this.creatingNewRole = true;
     }
 
-    async createCategory(name) {
+    async createRole(name) {
         this.createLoading = true;
         try {
             await this.apollo.mutate({
@@ -115,7 +118,15 @@ export class AdminRolesComponent implements OnInit {
         this.createLoading = false;
     }
 
-    async editCategory(category, name) {
+    async editRole(
+        role,
+        name,
+        tagVisible,
+        tagName,
+        tagBackgroundColor,
+        tagTextColor,
+        permissions
+    ) {
         this.editLoading = true;
         try {
             await this.apollo.mutate({
@@ -141,8 +152,13 @@ export class AdminRolesComponent implements OnInit {
                     }
                 `,
                 variables: {
-                    category: category._id,
-                    name: name
+                    role: role._id,
+                    name: name,
+                    tagVisible: tagVisible,
+                    tagName: tagName,
+                    tagBackgroundColor: tagBackgroundColor,
+                    tagTextColor: tagTextColor,
+                    permissions: permissions
                 }
             }).toPromise();
 
@@ -156,24 +172,24 @@ export class AdminRolesComponent implements OnInit {
         this.editLoading = false;
     }
 
-    async deleteCategory(category) {
+    async deleteRole(role) {
         let result = await this.dialog.open(ConfirmDialogComponent, {
             width: '350px',
             data: {
-                header: 'Delete Category',
-                message: 'Are you sure you want to delete ' + category.name + '? This cannot be undone.'
+                header: 'Delete Role',
+                message: 'Are you sure you want to delete ' + role.name + '? This cannot be undone.'
             }
         }).afterClosed().toPromise();
 
         if (result) {
             await this.apollo.mutate({
                 mutation: gql`
-                    mutation deleteCategory($category: ID!) {
-                        deleteCategory(category: $category)
+                    mutation deleteRole($role: ID!) {
+                        deleteRole(role: $role)
                     }
                 `,
                 variables: {
-                    category: category._id
+                    role: role._id
                 }
             }).toPromise();
 

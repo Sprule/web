@@ -4,7 +4,7 @@
  </app-admin-header>
 
 <div fxLayout='row' fxLayoutGap='15px'>
-    <div fxFlex='200px' fxLayout='column' fxLayoutAlign='center start' class='side-list'>
+    <div fxFlex='200px' fxLayout='column' fxLayoutAlign='start start' class='side-list'>
         <div *ngFor='let role of roles' style='width: 100%'>
             <button [style.background-color]="role == selectedRole ? '#dcdcdc' : null" mat-button (click)='selectRole(role)'>{{role.name}}</button>
         </div>
@@ -14,9 +14,31 @@
 
     <!-- Edit -->
     <div fxFlex *ngIf='selectedRole && !creatingNewRole'>
-        <form fxLayout="column" [formGroup]="editFormGroup" (submit)="editRole(selectedRole, name.value)">
+        <form fxLayout="column" [formGroup]="editFormGroup" (submit)="editRole(selectedRole, name.value, tagVisible.checked, tagName.value, tagBackgroundColor.value, tagTextColor.value, [])">
+
+            <!-- Name -->
             <mat-form-field class="full-width">
                 <input matInput placeholder="Name" formControlName="nameCtrl" [(ngModel)]='selectedRole.name' #name>
+            </mat-form-field>
+
+            <!-- Tag Visible -->
+            <div class="full-width">
+                <mat-slide-toggle [(checked)]="selectedRole.tagVisible" #tagVisible>Tag Visible</mat-slide-toggle>
+            </div>
+            
+            <!-- Tag Name -->
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Tag Name" formControlName="tagNameCtrl" [(ngModel)]='selectedRole.tagName' #tagName>
+            </mat-form-field>
+
+            <!-- Tag Background Color -->
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Tag Background Color" formControlName="tagBackgroundColorCtrl" [(ngModel)]='selectedRole.tagBackgroundColor' #tagBackgroundColor>
+            </mat-form-field>
+
+            <!-- Tag Text Color -->
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Tag Text Color" formControlName="tagTextColorCtrl" [(ngModel)]='selectedRole.tagTextColor' #tagTextColor>
             </mat-form-field>
         
             <div fxLayoutGap="10px">
