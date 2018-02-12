@@ -1,3 +1,4 @@
+import { HeaderComponent } from './admin/header/header.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RecentCategoryComponent } from './forum/category/recent/recent-category.component';
 import { NavbarComponent } from './../navbar/navbar.component';
@@ -6,7 +7,7 @@ import { NgModule, Component } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component'
 import { CommunityGuard } from '../guards/community.guard';
-import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule } from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatPaginatorModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarComponent } from './forum/sidebar/sidebar.component';
 import { PostComponent } from './forum/post/post.component';
@@ -19,7 +20,11 @@ import { CreateTopicComponent } from './forum/create-topic/create-topic.componen
 import { EditorComponent } from './forum/editor/editor.component';
 
 @NgModule({
-    declarations: [HomeComponent, SidebarComponent, PostComponent, TopicComponent, SingleCategoryComponent, RecentCategoryComponent, CreateTopicComponent, EditorComponent],
+    declarations: [
+        HomeComponent, SidebarComponent, PostComponent, TopicComponent,
+        SingleCategoryComponent, RecentCategoryComponent, CreateTopicComponent, EditorComponent,
+        HeaderComponent
+    ],
     imports: [
         CommonModule,
         NavbarModule,
@@ -40,7 +45,7 @@ import { EditorComponent } from './forum/editor/editor.component';
         ]),
         FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(), //Editor
         MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule,
-        FlexLayoutModule
+        FlexLayoutModule, MatPaginatorModule
     ]
 })
 export class CommunityModule {

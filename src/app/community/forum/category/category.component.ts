@@ -1,4 +1,4 @@
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, PageEvent } from '@angular/material';
 import { Apollo } from 'apollo-angular';
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
@@ -14,6 +14,14 @@ import { CommunityService } from '../../../services/community.service';
 export abstract class CategoryComponent implements OnInit {
     topicListings;
     loadingTopicListings: boolean;
+
+    // MatPaginator Inputs
+    length = 100;
+    pageSize = 10;
+    pageSizeOptions = [5, 10, 25, 100];
+
+    // MatPaginator Output
+    pageEvent: PageEvent;
 
     constructor(
         public apollo: Apollo,
@@ -38,6 +46,10 @@ export abstract class CategoryComponent implements OnInit {
             })
         }
         this.loadingTopicListings = false;
+    }
+
+    setPageSizeOptions(setPageSizeOptionsInput: string) {
+        this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
 
     abstract async getTopicListings(offset: number, limit: number);

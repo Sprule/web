@@ -1,3 +1,4 @@
+import { HeaderComponent } from './../header/header.component';
 import { AdminRolesComponent } from './roles/roles.component';
 import { AdminSidebarComponent } from './sidebar/sidebar.component';
 import { CommunityAdminGuard } from './../../guards/community-admin.guard';
@@ -11,13 +12,12 @@ import { CommonModule } from '@angular/common';
 import { NavbarModule } from '../../navbar/navbar.module';
 import { AdminCategoriesComponent } from './categories/categories.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AdminHeaderComponent } from './header/header.component';
 import { ConfirmDialogComponent } from '../../global/dialog/confirm/confirm.component';
 
 @NgModule({
     declarations: [
         AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent,
-        AdminHeaderComponent, ConfirmDialogComponent, AdminRolesComponent
+        HeaderComponent, ConfirmDialogComponent, AdminRolesComponent
     ],
     imports: [
         CommonModule,

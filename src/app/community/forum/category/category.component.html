@@ -1,0 +1,11 @@
+<mat-toolbar>
+    <mat-paginator 
+        [length]="length" 
+        [pageSize]="pageSize" 
+        [pageSizeOptions]="pageSizeOptions" 
+        (page)="pageEvent = $event"></mat-paginator>
+        
+    <span style='flex: 1 1 auto;'></span>
+    <button *ngIf='category' mat-raised-button color='primary' routerLink='/forums/{{category._id}}/new'>New Topic</button>
+</mat-toolbar>
+<p>Content</p>
