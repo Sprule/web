@@ -1,11 +1,12 @@
 <mat-toolbar>
+    <button *ngIf='category' mat-raised-button color='primary' routerLink='/forums/{{category._id}}/new'>New Topic</button>
+    <span style='flex: 1 1 auto;'></span>
     <mat-paginator 
         [length]="length" 
         [pageSize]="pageSize" 
         [pageSizeOptions]="pageSizeOptions" 
         (page)="pageEvent = $event"></mat-paginator>
         
-    <span style='flex: 1 1 auto;'></span>
-    <button *ngIf='category' mat-raised-button color='primary' routerLink='/forums/{{category._id}}/new'>New Topic</button>
+    <!-- <button *ngIf='category' fxHide.lt-md mat-raised-button color='primary' routerLink='/forums/{{category._id}}/new'>New Topic</button> -->
 </mat-toolbar>
 <p>Content</p>

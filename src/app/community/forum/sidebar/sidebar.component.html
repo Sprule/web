@@ -1,12 +1,12 @@
-<div>
+<div fxLayout='column'  >
     <div style='padding: 15px'>
         <app-header [title]="'Forums'" [subtitle]="'Socialize with your friends'">
         </app-header>
     </div>
     
     <div *ngIf='loading'>Loading...</div>
-    <div *ngIf='!loading' fxLayoutGap='15px'>
-        <div fxFlex='200px' fxFlex.lt-md='100' fxLayout='column' fxLayoutAlign='start start' class='side-list'>
+    <div *ngIf='!loading' fxLayoutGap='15px' fxLayout='row' fxLayout.lt-md='column'>
+        <div fxFlex='200px' fxFlex.lt-md='100%' fxLayout='column' fxLayoutAlign='start start' class='side-list'>
             <div style='width: 100%'>
                 <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums">What's New?</button>
             </div>
@@ -14,7 +14,7 @@
                 <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums/{{category._id}}">{{category.name}}</button>
             </div>
         </div>
-        <div fxFlex fxFlex.lt-md='100' class='content-container'>
+        <div class='content-container' fxFlex.lt-md='100%'>
             <router-outlet></router-outlet>
         </div>
     </div>
