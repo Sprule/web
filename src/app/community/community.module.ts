@@ -1,3 +1,4 @@
+import { RecentCategoryComponent } from './forum/category/recent/recent-category.component';
 import { NavbarComponent } from './../navbar/navbar.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { NgModule, Component } from '@angular/core'
@@ -13,9 +14,10 @@ import { TopicComponent } from './forum/topic/topic.component';
 import { CategoryComponent } from './forum/category/category.component';
 import { CommonModule } from '@angular/common';
 import { NavbarModule } from '../navbar/navbar.module';
+import { SingleCategoryComponent } from './forum/category/single/single-category.component';
 
 @NgModule({
-    declarations: [HomeComponent, TopicIndexComponent, SidebarComponent, PostComponent, TopicComponent, CategoryComponent],
+    declarations: [HomeComponent, TopicIndexComponent, SidebarComponent, PostComponent, TopicComponent, SingleCategoryComponent, RecentCategoryComponent],
     imports: [
         CommonModule,
         NavbarModule,
@@ -25,7 +27,8 @@ import { NavbarModule } from '../navbar/navbar.module';
                     { path: '', component: HomeComponent, pathMatch: 'full' },
                     {
                         path: 'forums', component: SidebarComponent, children: [
-                            { path: '', component: TopicIndexComponent, pathMatch: 'full' }
+                            { path: '', component: RecentCategoryComponent, pathMatch: 'full' },
+                            { path: ':category', component: SingleCategoryComponent, pathMatch: 'full' }
                         ]
                     },
                     { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },

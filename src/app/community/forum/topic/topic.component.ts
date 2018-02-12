@@ -1,19 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-topic',
-  template: `
-    <p>
-      topic works!
-    </p>
-  `,
-  styles: []
+    selector: 'app-forum-topic',
+    templateUrl: "./topic.component.html",
+    styleUrls: ["./topic.component.scss"]
 })
 export class TopicComponent implements OnInit {
+    @Input() post;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }
