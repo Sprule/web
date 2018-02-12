@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './admin/header/header.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RecentCategoryComponent } from './forum/category/recent/recent-category.component';
@@ -7,7 +8,7 @@ import { NgModule, Component } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component'
 import { CommunityGuard } from '../guards/community.guard';
-import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatPaginatorModule } from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatPaginatorModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarComponent } from './forum/sidebar/sidebar.component';
 import { PostComponent } from './forum/post/post.component';
@@ -45,7 +46,8 @@ import { EditorComponent } from './forum/editor/editor.component';
         ]),
         FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(), //Editor
         MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule,
-        FlexLayoutModule, MatPaginatorModule
+        FlexLayoutModule, MatPaginatorModule, MatProgressSpinnerModule,
+        MatFormFieldModule, ReactiveFormsModule, MatInputModule
     ]
 })
 export class CommunityModule {
