@@ -33,7 +33,7 @@ export abstract class CategoryComponent implements OnInit {
             this.topicListings = await this.getTopicListings(0, 20);
         } catch (error) {
             console.log(error);
-            this.snackbar.open('Failed to load topics. Try again?', 'close', {
+            this.snackbar.open('Failed to load topics. Try again?', 'Close', {
                 duration: 7000
             })
         }
