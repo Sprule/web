@@ -1,21 +1,23 @@
-<div fxLayout='column'  >
-    <div style='padding: 15px'>
-        <app-header [title]="'Forums'" [subtitle]="'Socialize with your friends'">
-        </app-header>
-    </div>
-    
-    <div *ngIf='loading'>Loading...</div>
-    <div *ngIf='!loading' fxLayoutGap='15px' fxLayout='row' fxLayout.lt-md='column'>
-        <div fxFlex='200px' fxFlex.lt-md='100%' fxLayout='column' fxLayoutAlign='start start' class='side-list'>
-            <div style='width: 100%'>
-                <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums">What's New?</button>
-            </div>
-            <div *ngFor='let category of categories' style='width: 100%'>
-                <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums/{{category._id}}">{{category.name}}</button>
-            </div>
+<div fxLayout='row' fxLayoutAlign='center start'>
+    <div fxLayout='column' fxFlex.lt-md='100%' fxFlex.md='900px' fxFlex.gt-md='1200px'>
+        <div style='padding: 15px'>
+            <app-header [title]="'Forums'" [subtitle]="'Socialize with your friends'">
+            </app-header>
         </div>
-        <div class='content-container' fxFlex.lt-md='100%'>
-            <router-outlet></router-outlet>
+    
+        <div *ngIf='loading'>Loading...</div>
+        <div *ngIf='!loading' fxLayoutGap='15px' fxLayout='row' fxLayout.lt-md='column'>
+            <div fxFlex='200px' fxFlex.lt-md='100%' fxLayout='column' fxLayoutAlign='start start' class='side-list'>
+                <div style='width: 100%'>
+                    <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums">What's New?</button>
+                </div>
+                <div *ngFor='let category of categories' style='width: 100%'>
+                    <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums/{{category._id}}">{{category.name}}</button>
+                </div>
+            </div>
+            <div class='content-container' fxFlex.lt-md='100%'>
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </div>
 </div>
