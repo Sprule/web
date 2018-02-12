@@ -1,5 +1,5 @@
+import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from './admin/header/header.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RecentCategoryComponent } from './forum/category/recent/recent-category.component';
 import { NavbarComponent } from './../navbar/navbar.component';
