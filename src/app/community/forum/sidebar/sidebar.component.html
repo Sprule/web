@@ -11,6 +11,7 @@
                 <div style='width: 100%'>
                     <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums">What's New?</button>
                 </div>
+                <hr>
                 <div *ngFor='let category of categories' style='width: 100%'>
                     <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums/{{category._id}}">{{category.name}}</button>
                 </div>

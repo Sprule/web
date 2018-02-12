@@ -12,6 +12,7 @@ import { CommunityService } from '../../../../services/community.service';
     styleUrls: ['../category.component.scss']
 })
 export class RecentCategoryComponent extends CategoryComponent implements OnInit {
+    recent: boolean = true;
 
     constructor(
         apollo: Apollo,

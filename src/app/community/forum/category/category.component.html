@@ -1,3 +1,18 @@
+<!-- Single Category Title -->
+<div *ngIf='category' class='category-title-wrapper'>
+    <h2 class='category-title'>{{category.name}}
+        <span class='category-subtitle'>Description</span>
+    </h2>
+</div>
+
+<!-- What's New Title -->
+<div *ngIf='recent' class='category-title-wrapper'>
+    <h2 class='category-title'>What's New?
+        <span class='category-subtitle'>Description</span>
+    </h2>
+</div>
+
+
 <mat-toolbar>
     <button *ngIf='category' mat-raised-button color='primary' routerLink='/forums/{{category._id}}/new'>New Topic</button>
     <span style='flex: 1 1 auto;'></span>
