@@ -12,6 +12,8 @@ import { CommunityService } from '../../../services/community.service';
   styles: []
 })
 export abstract class CategoryComponent implements OnInit {
+    topicListings;
+    loadingTopicListings: boolean;
 
     constructor(
         public apollo: Apollo,
@@ -26,14 +28,16 @@ export abstract class CategoryComponent implements OnInit {
     }
 
     async loadTopics() {
+        this.loadingTopicListings = true;
         try {
-            await this.getTopicListings(0, 20);
+            this.topicListings = await this.getTopicListings(0, 20);
         } catch (error) {
             console.log(error);
             this.snackbar.open('Failed to load topics. Try again?', 'close', {
                 duration: 7000
             })
         }
+        this.loadingTopicListings = false;
     }
 
     abstract async getTopicListings(offset: number, limit: number);

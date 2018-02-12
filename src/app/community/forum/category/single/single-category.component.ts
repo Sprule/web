@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { CategoryComponent } from '../category.component';
 import { ActivatedRoute } from '@angular/router';
-import gql from 'graphql';
+import gql from 'graphql-tag';
 
 @Component({
     selector: 'app-forum-single-category',
@@ -42,7 +42,7 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
             let result = await this.apollo.query({
                 query: gql`
                     query category($category: ID!) {
-                        categories(category: $category) {
+                        category(category: $category) {
                             _id
                             name
                         }
@@ -52,6 +52,7 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
                     category: id
                 }
             }).toPromise() as any;
+            console.log('category: ' + result.data.category);
 
             this.category = result.data.category;
             this.categoryLoading = false;
@@ -70,6 +71,10 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
 
     async getTopicDesc() {
 
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
 }

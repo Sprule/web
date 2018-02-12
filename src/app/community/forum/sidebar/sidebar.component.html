@@ -1,4 +1,10 @@
 <div *ngIf='loading'>Loading...</div>
-<div *ngIf='!loading'>Sidebar</div>
+<div *ngIf='!loading'>
+    <div fxFlex='200px' fxLayout='column' fxLayoutAlign='start start' class='side-list'>
+        <div *ngFor='let category of categories' style='width: 100%'>
+            <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums/{{category._id}}">{{category.name}}</button>
+        </div>
+    </div>
+</div>
 
 <router-outlet></router-outlet>

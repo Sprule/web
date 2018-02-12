@@ -26,6 +26,7 @@ import { RegisterComponent } from './global/register/register.component';
 import { CreateComponent } from './global/create/create.component';
 import { CommunityGuard } from './guards/community.guard';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
     declarations: [
