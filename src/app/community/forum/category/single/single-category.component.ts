@@ -45,6 +45,7 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
                         category(category: $category) {
                             _id
                             name
+                            desc
                         }
                     }
                 `,
