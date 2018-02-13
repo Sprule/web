@@ -72,6 +72,10 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
                         title
                         replyCount
                         locked
+                        user {
+                            _id
+                            name
+                        }
                     }
                 }
             `,

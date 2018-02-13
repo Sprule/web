@@ -1,6 +1,11 @@
 <div fxLayout='row'>
-    <div>
+    <div fxLayout='column'>
         <a routerLink='/forums/t/{{topicListing._id}}'>{{topicListing.title}}</a>
+        <small>
+            <a routerLink='/u/{{topicListing.user.name}}'>{{topicListing.user.name}}</a>
+            <span>3 hours ago</span>
+        </small>
     </div>
-    <img src="https://minotar.net/helm/Luuke/32.png">
+    <span class='fill-remaining-space'></span>
+    <img class='avatar' src="https://minotar.net/helm/Luuke/32.png">
 </div>

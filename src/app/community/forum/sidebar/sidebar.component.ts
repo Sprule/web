@@ -54,9 +54,6 @@ export class SidebarComponent implements OnInit {
     }
 
     isCategoryActive(category) {
-        console.log('category: ' + category);
-        console.log(this.url);
-
         // What's New?
         if (!category && this.url == '/forums') return true; 
 

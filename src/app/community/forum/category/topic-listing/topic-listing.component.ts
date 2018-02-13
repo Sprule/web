@@ -7,12 +7,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TopicListingComponent implements OnInit {
     @Input() topicListing;
+    latestPost;
 
     constructor() {
-        
+
     }
 
     ngOnInit() {
+        if (this.topicListing.replies && this.topicListing.replies.length > 0) {
+            this.latestPost = this.topicListing.replies[this.topicListing.replies.length - 1];
+        } else {
+            this.latestPost = this.topicListing.post;
+        }
     }
 
 }

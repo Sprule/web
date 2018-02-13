@@ -6,4 +6,6 @@ body {
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
-
+.fill-remaining-space {
+    flex: 1 1 auto;
+}

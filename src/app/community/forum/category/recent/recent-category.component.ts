@@ -42,6 +42,10 @@ export class RecentCategoryComponent extends CategoryComponent implements OnInit
                         title
                         replyCount
                         locked
+                        user {
+                            _id
+                            name
+                        }
                     }
                 }
             `,
