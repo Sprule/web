@@ -63,7 +63,28 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
     }
     
     async getTopicListings(offset: number, limit: number) {
-
+        let result = await this.apollo.query({
+            query: gql`
+                query topicListing($community: ID!, $offset: Int, $limit: Int, $category: ID!) {
+                    topicListing(community: $community, offset: $offset, limit: $limit, category: $category) {
+                        _id
+                        community
+                        title
+                        replyCount
+                        locked
+                    }
+                }
+            `,
+            variables: {
+                community: this.community.community._id,
+                offset: offset,
+                limit: limit,
+                category: this.category._id
+            },
+            fetchPolicy: 'network-only'
+        }).toPromise() as any;
+        console.log(result.data);
+        return result.data.topicListing;
     }
 
     async getTopicName() {

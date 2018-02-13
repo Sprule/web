@@ -19,12 +19,13 @@ import { NavbarModule } from '../navbar/navbar.module';
 import { SingleCategoryComponent } from './forum/category/single/single-category.component';
 import { CreateTopicComponent } from './forum/create-topic/create-topic.component';
 import { EditorComponent } from './forum/editor/editor.component';
+import { TopicListingComponent } from './forum/category/topic-listing/topic-listing.component';
 
 @NgModule({
     declarations: [
         HomeComponent, SidebarComponent, PostComponent, TopicComponent,
         SingleCategoryComponent, RecentCategoryComponent, CreateTopicComponent, EditorComponent,
-        HeaderComponent
+        HeaderComponent, TopicListingComponent
     ],
     imports: [
         CommonModule,

@@ -1,7 +1,9 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityService } from './../../../services/community.service';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular/Apollo';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-sidebar',
@@ -11,10 +13,15 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
     loading: boolean = true;
     categories: [any];
+    sub;
+    url;
 
     constructor(
         public apollo: Apollo,
-        public community: CommunityService
+        public community: CommunityService,
+        public route: ActivatedRoute,
+        public router: Router,
+        public location: Location
     ) { }
 
     ngOnInit() {
@@ -37,7 +44,27 @@ export class SidebarComponent implements OnInit {
             this.categories = (data as any).categories;
         }, err => {
             console.log(err);
+            })
+        
+        // Hack for tracking activated category
+        this.url = this.location.path();
+        this.sub = this.router.events.subscribe(val => {
+            this.url = this.location.path();
         })
+    }
+
+    isCategoryActive(category) {
+        console.log('category: ' + category);
+        console.log(this.url);
+
+        // What's New?
+        if (!category && this.url == '/forums') return true; 
+
+        return category && this.url.indexOf(category._id) > -1;
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
 }

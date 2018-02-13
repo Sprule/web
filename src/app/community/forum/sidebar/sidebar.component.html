@@ -9,11 +9,11 @@
         <div *ngIf='!loading' fxLayoutGap='15px' fxLayout='row' fxLayout.lt-md='column'>
             <div fxFlex='200px' fxFlex.lt-md='100%' fxLayout='column' fxLayoutAlign='start start' class='side-list'>
                 <div style='width: 100%'>
-                    <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums">What's New?</button>
+                    <button [style.background-color]="isCategoryActive(null) ? '#dcdcdc' : null" mat-button routerLink="/forums">What's New?</button>
                 </div>
                 <hr>
                 <div *ngFor='let category of categories' style='width: 100%'>
-                    <button [style.background-color]="false ? '#dcdcdc' : null" mat-button routerLink="/forums/{{category._id}}">{{category.name}}</button>
+                    <button [style.background-color]="isCategoryActive(category) ? '#dcdcdc' : null" mat-button routerLink="/forums/{{category._id}}">{{category.name}}</button>
                 </div>
             </div>
             <div class='content-container' fxFlex.lt-md='100%'>

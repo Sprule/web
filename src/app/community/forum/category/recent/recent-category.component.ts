@@ -49,7 +49,8 @@ export class RecentCategoryComponent extends CategoryComponent implements OnInit
                 community: this.community.community._id,
                 offset: offset,
                 limit: limit
-            }
+            },
+            fetchPolicy: 'network-only'
         }).toPromise() as any;
         console.log(result.data);
         return result.data.topicListing;
