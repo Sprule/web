@@ -9,3 +9,12 @@ body {
 .fill-remaining-space {
     flex: 1 1 auto;
 }
+
+a {
+    color: #08c;
+    text-decoration: none;
+}
+
+.avatar {
+    border-radius: 3px;
+}

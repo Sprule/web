@@ -1,3 +1,17 @@
-<div class='post-list-wrapper'>
+<div *ngIf='topic' class='post-title-wrapper' fxLayout='row'>
+    <h1 class='title'>
+        <a routerLink='/forums/t/{{topic._id}}'>{{topic.title}}</a>
+        <small class='subtitle'>
+            by
+            <a routerLink='/u/{{topic.user.name}}'>{{topic.user.name}}</a>
+        </small>
+    </h1>
+    <span class='fill-remaining-space'></span>
+    <div fxLayoutAlign='end end'>
+        <button class='reply-button' mat-raised-button color='primary' routerLink='/forums/t/{{topic._id}}/reply'>Reply</button>
+    </div>
+</div>
+
+<div *ngIf='replies' class='post-list-wrapper'>
     <app-forum-post *ngFor='let post of replies' [post]='post'></app-forum-post>
 </div>

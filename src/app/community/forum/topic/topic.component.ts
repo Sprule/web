@@ -39,11 +39,9 @@ export class TopicComponent implements OnInit {
                         topic(id: $id) {
                             _id
                             title
-                            post {
+                            user {
                                 _id
-                                content
-                                edits
-                                likeCount
+                                name
                             }
                             locked
                             category {
