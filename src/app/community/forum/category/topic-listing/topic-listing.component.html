@@ -1,5 +1,24 @@
+
+<!-- Topic Listing Header -->
+<div fxLayout='row' class='topic-listing-header'>
+    <div fxFlex='30%'>
+        <strong>Topic</strong>
+    </div>
+    <span class='fill-remaining-space'></span>
+    <div fxFlex>
+        <strong>Latest</strong>
+    </div>
+    <div fxFlex>
+        <strong>Posts</strong>
+    </div>
+    <div fxFlex>
+        <strong>Views</strong>
+    </div>
+</div>
+
+<!-- Topic Listing -->
 <div fxLayout='row'>
-    <div fxLayout='column'>
+    <div fxFlex='40%' fxLayout='column'>
         <a routerLink='/forums/t/{{topicListing._id}}'>{{topicListing.title}}</a>
         <small>
             <a routerLink='/u/{{topicListing.user.name}}'>{{topicListing.user.name}}</a>
@@ -7,5 +26,16 @@
         </small>
     </div>
     <span class='fill-remaining-space'></span>
-    <img class='avatar' src="https://minotar.net/helm/Luuke/32.png">
+    <div fxFlex>
+        <img class='avatar' src="https://minotar.net/helm/Luuke/32.png">
+        <div>
+            <a routerLink='/u/{{latestPost.user.name}}'>{{latestPost.user.name}}</a>
+        </div>
+    </div>
+    <div fxFlex>
+
+    </div>
+    <div fxFlex>
+        
+    </div>
 </div>

@@ -1,4 +1,4 @@
-import { HeaderComponent } from './header/header.component';
+import { HeaderModule } from './header/header.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RecentCategoryComponent } from './forum/category/recent/recent-category.component';
@@ -25,11 +25,12 @@ import { TopicListingComponent } from './forum/category/topic-listing/topic-list
     declarations: [
         HomeComponent, SidebarComponent, PostComponent, TopicComponent,
         SingleCategoryComponent, RecentCategoryComponent, CreateTopicComponent, EditorComponent,
-        HeaderComponent, TopicListingComponent
+        TopicListingComponent
     ],
     imports: [
         CommonModule,
         NavbarModule,
+        HeaderModule,
         RouterModule.forChild([
             {
                 path: '', component: NavbarComponent, canActivate: [CommunityGuard], children: [

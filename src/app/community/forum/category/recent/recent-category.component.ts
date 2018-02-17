@@ -46,6 +46,20 @@ export class RecentCategoryComponent extends CategoryComponent implements OnInit
                             _id
                             name
                         }
+                        post {
+                            user {
+                                _id
+                                name
+                            }
+                        }
+                        replies {
+                            _id
+                            user {
+                                _id
+                                name
+                            }
+                        }
+                        replyCount
                     }
                 }
             `,

@@ -1,4 +1,4 @@
-import { HeaderComponent } from './../header/header.component';
+import { HeaderModule } from './../header/header.module';
 import { AdminRolesComponent } from './roles/roles.component';
 import { AdminSidebarComponent } from './sidebar/sidebar.component';
 import { CommunityAdminGuard } from './../../guards/community-admin.guard';
@@ -17,11 +17,12 @@ import { ConfirmDialogComponent } from '../../global/dialog/confirm/confirm.comp
 @NgModule({
     declarations: [
         AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent,
-        HeaderComponent, ConfirmDialogComponent, AdminRolesComponent
+        ConfirmDialogComponent, AdminRolesComponent
     ],
     imports: [
         CommonModule,
         NavbarModule,
+        HeaderModule,
         RouterModule.forChild([
             {
                 path: '', component: AdminSidebarComponent, children: [

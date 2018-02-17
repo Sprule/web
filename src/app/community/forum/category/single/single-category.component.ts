@@ -76,6 +76,12 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
                             _id
                             name
                         }
+                        post {
+                            user {
+                                _id
+                                name
+                            }
+                        }
                     }
                 }
             `,
