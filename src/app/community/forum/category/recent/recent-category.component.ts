@@ -52,7 +52,7 @@ export class RecentCategoryComponent extends CategoryComponent implements OnInit
                                 name
                             }
                         }
-                        replies {
+                        replies(lastOnly: true) {
                             _id
                             user {
                                 _id
@@ -60,6 +60,7 @@ export class RecentCategoryComponent extends CategoryComponent implements OnInit
                             }
                         }
                         replyCount
+                        views
                     }
                 }
             `,

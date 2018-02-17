@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./topic-listing.component.scss']
 })
 export class TopicListingComponent implements OnInit {
-    @Input() topicListing;
+    @Input() topic;
     latestPost;
 
     constructor() {
@@ -14,10 +14,10 @@ export class TopicListingComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.topicListing.replies && this.topicListing.replies.length > 0) {
-            this.latestPost = this.topicListing.replies[this.topicListing.replies.length - 1];
+        if (this.topic.replies && this.topic.replies.length > 0) {
+            this.latestPost = this.topic.replies[this.topic.replies.length - 1];
         } else {
-            this.latestPost = this.topicListing.post;
+            this.latestPost = this.topic.post;
         }
     }
 

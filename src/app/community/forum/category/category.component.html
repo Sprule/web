@@ -30,5 +30,5 @@
 </div>
 
 <div *ngIf='!loadingTopicListings' class='topic-listing-wrapper'>
-    <app-topic-listing *ngFor='let topicListing of topicListings' [topicListing]='topicListing'></app-topic-listing>
+    <app-topic-listing *ngFor='let topicListing of topicListings' [topic]='topicListing'></app-topic-listing>
 </div>

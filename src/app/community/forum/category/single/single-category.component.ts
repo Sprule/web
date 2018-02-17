@@ -82,6 +82,15 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
                                 name
                             }
                         }
+                        replies(lastOnly: true) {
+                            _id
+                            user {
+                                _id
+                                name
+                            }
+                        }
+                        replyCount
+                        views
                     }
                 }
             `,
