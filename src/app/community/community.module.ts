@@ -11,7 +11,7 @@ import { CommunityGuard } from '../guards/community.guard';
 import { MatMenuModule, MatButtonModule, MatToolbarModule, MatIconModule, MatPaginatorModule, MatFormFieldModule, MatProgressSpinnerModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarComponent } from './forum/sidebar/sidebar.component';
-import { PostComponent } from './forum/post/post.component';
+import { PostComponent } from './forum/topic/post/post.component';
 import { TopicComponent } from './forum/topic/topic.component';
 import { CategoryComponent } from './forum/category/category.component';
 import { CommonModule } from '@angular/common';
@@ -39,7 +39,8 @@ import { TopicListingComponent } from './forum/category/topic-listing/topic-list
                         path: 'forums', component: SidebarComponent, children: [
                             { path: '', component: RecentCategoryComponent, pathMatch: 'full' },
                             { path: ':category', component: SingleCategoryComponent, pathMatch: 'full' },
-                            { path: ':category/new', component: CreateTopicComponent, pathMatch: 'full' }
+                            { path: ':category/new', component: CreateTopicComponent, pathMatch: 'full' },
+                            { path: 't/:topic', component: TopicComponent, pathMatch: 'full' },
                         ]
                     },
                     { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },

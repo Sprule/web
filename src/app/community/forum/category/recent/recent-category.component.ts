@@ -47,12 +47,13 @@ export class RecentCategoryComponent extends CategoryComponent implements OnInit
                             name
                         }
                         post {
+                            _id
                             user {
                                 _id
                                 name
                             }
                         }
-                        replies(lastOnly: true) {
+                        lastReply {
                             _id
                             user {
                                 _id
