@@ -1,3 +1,4 @@
+import { ReplyTopicComponent } from './forum/reply-topic/reply-topic.component';
 import { HeaderModule } from './header/header.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
@@ -25,7 +26,7 @@ import { TopicListingComponent } from './forum/category/topic-listing/topic-list
     declarations: [
         HomeComponent, SidebarComponent, PostComponent, TopicComponent,
         SingleCategoryComponent, RecentCategoryComponent, CreateTopicComponent, EditorComponent,
-        TopicListingComponent
+        TopicListingComponent, ReplyTopicComponent
     ],
     imports: [
         CommonModule,
@@ -41,6 +42,7 @@ import { TopicListingComponent } from './forum/category/topic-listing/topic-list
                             { path: ':category', component: SingleCategoryComponent, pathMatch: 'full' },
                             { path: ':category/new', component: CreateTopicComponent, pathMatch: 'full' },
                             { path: 't/:topic', component: TopicComponent, pathMatch: 'full' },
+                            { path: 't/:topic/reply', component: ReplyTopicComponent, pathMatch: 'full' },
                         ]
                     },
                     { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },

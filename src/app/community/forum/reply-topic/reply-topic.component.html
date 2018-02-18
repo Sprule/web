@@ -1,14 +1,10 @@
 <div *ngIf='category' class='category-title-wrapper'>
-    <h2 class='category-title'>{{category.name}}
-        <span class='category-subtitle'>{{category.desc}}</span>
+    <h2 class='category-title'>{{topic.category.name}}
+        <span class='category-subtitle'>{{topic.category.desc}}</span>
     </h2>
 </div>
 
-<form fxLayout="column" [formGroup]="createFormGroup" (submit)="submit(title.value, editor.content)">
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Title" formControlName="titleCtrl" #title>
-    </mat-form-field>
-
+<form fxLayout="column" [formGroup]="createFormGroup" (submit)="submit(editor.content)">
     <app-editor #editor></app-editor>
 
     <div fxLayoutGap="10px" style='padding-top: 15px'>
