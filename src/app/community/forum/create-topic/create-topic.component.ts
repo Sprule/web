@@ -1,3 +1,4 @@
+import { FormBuilder, Validators } from '@angular/forms/';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
@@ -12,13 +13,35 @@ export class CreateTopicComponent implements OnInit {
     categoryLoading: boolean;
     category;
 
+    createFormGroup;
+
+    title;
+
     private sub;
 
     constructor(
         public route: ActivatedRoute,
-        public apollo: Apollo
+        public apollo: Apollo,
+        public formBuilder: FormBuilder
     ) {
+        this.createFormGroup = this.formBuilder.group({
+            titleCtrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]]
+        })
+    }
 
+    async submit(title, content) {
+        let result = await this.apollo.mutate({
+            mutation: gql`
+                mutation createTopic($title: String!, $content: String!, $category: ID!) {
+                    createTopic(title: $title, content: $content, category: $category)
+                }
+            `,
+            variables: {
+                title: title,
+                content: content,
+                category: this.category._id
+            }
+        }).toPromise() as any;
     }
 
     ngOnInit() {
@@ -32,6 +55,7 @@ export class CreateTopicComponent implements OnInit {
                         category(category: $category) {
                             _id
                             name
+                            desc
                         }
                     }
                 `,
@@ -39,6 +63,7 @@ export class CreateTopicComponent implements OnInit {
                     category: id
                 }
             }).toPromise() as any;
+            console.log('category: ' + result.data.category);
 
             this.category = result.data.category;
             this.categoryLoading = false;
