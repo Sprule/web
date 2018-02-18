@@ -1,3 +1,4 @@
+import { ForumService } from './../../../services/forum.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityService } from './../../../services/community.service';
 import gql from 'graphql-tag';
@@ -21,7 +22,8 @@ export class SidebarComponent implements OnInit {
         public community: CommunityService,
         public route: ActivatedRoute,
         public router: Router,
-        public location: Location
+        public location: Location,
+        public forum: ForumService
     ) { }
 
     ngOnInit() {
@@ -44,7 +46,7 @@ export class SidebarComponent implements OnInit {
             this.categories = (data as any).categories;
         }, err => {
             console.log(err);
-            })
+        })
         
         // Hack for tracking activated category
         this.url = this.location.path();
@@ -54,10 +56,11 @@ export class SidebarComponent implements OnInit {
     }
 
     isCategoryActive(category) {
-        // What's New?
-        if (!category && this.url == '/forums') return true; 
-
-        return category && this.url.indexOf(category._id) > -1;
+        if (category) {
+            return this.forum.selectedCategory && category._id == this.forum.selectedCategory._id;
+        } else {
+            return this.forum.selectedCategory == null;
+        }
     }
 
     ngOnDestroy() {

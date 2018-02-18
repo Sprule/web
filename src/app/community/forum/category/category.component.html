@@ -13,8 +13,10 @@
 </div> -->
 
 
-<mat-toolbar>
-    <button *ngIf='category' mat-raised-button color='primary' routerLink='/forums/{{category._id}}/new'>New Topic</button>
+<mat-toolbar fxLayout='row'>
+    <div *ngIf='category' fxLayoutAlign='start center'>
+        <button mat-raised-button color='primary' routerLink='/forums/{{category._id}}/new'>New Topic</button>
+    </div>
     <span style='flex: 1 1 auto;'></span>
     <mat-paginator 
         [length]="length" 
@@ -47,6 +49,6 @@
             <strong>Views</strong>
         </div>
     </div>
-    
+
     <app-topic-listing *ngFor='let topicListing of topicListings' [topic]='topicListing'></app-topic-listing>
 </div>

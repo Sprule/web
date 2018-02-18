@@ -1,3 +1,4 @@
+import { ForumService } from './../../../../services/forum.service';
 import { MatSnackBar } from '@angular/material';
 import { Apollo } from 'apollo-angular/Apollo';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +18,8 @@ export class RecentCategoryComponent extends CategoryComponent implements OnInit
     constructor(
         apollo: Apollo,
         community: CommunityService,
-        snackbar: MatSnackBar
+        snackbar: MatSnackBar,
+        public forum: ForumService
     ) {
         super(
             apollo,
@@ -28,6 +30,8 @@ export class RecentCategoryComponent extends CategoryComponent implements OnInit
 
     ngOnInit() {
         super.ngOnInit();
+
+        this.forum.setCategory(null);
 
         super.loadTopics();
     }

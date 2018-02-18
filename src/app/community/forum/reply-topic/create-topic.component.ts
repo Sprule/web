@@ -1,4 +1,3 @@
-import { ForumService } from './../../../services/forum.service';
 import { FormBuilder, Validators } from '@angular/forms/';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -10,7 +9,7 @@ import gql from 'graphql-tag';
   templateUrl: './create-topic.component.html',
   styleUrls: ['./create-topic.component.scss']
 })
-export class CreateTopicComponent implements OnInit {
+export class ReplyTopicComponent implements OnInit {
     categoryLoading: boolean;
     category;
 
@@ -23,8 +22,7 @@ export class CreateTopicComponent implements OnInit {
     constructor(
         public route: ActivatedRoute,
         public apollo: Apollo,
-        public formBuilder: FormBuilder,
-        public forum: ForumService
+        public formBuilder: FormBuilder
     ) {
         this.createFormGroup = this.formBuilder.group({
             titleCtrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(16)]]
@@ -69,8 +67,6 @@ export class CreateTopicComponent implements OnInit {
 
             this.category = result.data.category;
             this.categoryLoading = false;
-
-            this.forum.setCategory(this.category);
         })
     }
 

@@ -27,6 +27,7 @@ import { CreateComponent } from './global/create/create.component';
 import { CommunityGuard } from './guards/community.guard';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { ForumService } from './services/forum.service';
 
 @NgModule({
     declarations: [
@@ -64,7 +65,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
         AuthGuard,
         GuardService,
         CommunityGuard,
-        CommunityAdminGuard
+        CommunityAdminGuard,
+        ForumService
     ],
     bootstrap: [AppComponent]
 })

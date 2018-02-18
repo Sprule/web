@@ -1,3 +1,4 @@
+import { ForumService } from './../../../../services/forum.service';
 import { MatSnackBar } from '@angular/material';
 import { CommunityService } from './../../../../services/community.service';
 import { Apollo } from 'apollo-angular/Apollo';
@@ -23,7 +24,8 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
         apollo: Apollo,
         community: CommunityService,
         snackbar: MatSnackBar,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        public forum: ForumService
     ) {
         super(
             apollo,
@@ -56,6 +58,8 @@ export class SingleCategoryComponent extends CategoryComponent implements OnInit
             console.log('category: ' + result.data.category);
 
             this.category = result.data.category;
+            this.forum.setCategory(this.category);
+
             this.categoryLoading = false;
 
             super.loadTopics();
