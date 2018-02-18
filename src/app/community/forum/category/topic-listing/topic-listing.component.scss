@@ -1,9 +1,3 @@
-.topic-listing-header {
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
-}
-
 .topic-listing-latest img {
     margin-right: 5px;
 }
@@ -12,4 +6,10 @@
 .latest-time,
 .topic-time {
     font-size: 14px;
+}
+
+.wrapper {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
 }

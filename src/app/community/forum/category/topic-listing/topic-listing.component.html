@@ -1,24 +1,5 @@
-
-<!-- Topic Listing Header -->
-<div fxLayout='row' class='topic-listing-header'>
-    <div fxFlex='30px' fxHide.xs></div>
-    <div fxFlex='20%'>
-        <strong>Topic</strong>
-    </div>
-    <span class='fill-remaining-space'></span>
-    <div fxFlex='20%' fxFlex.xs>
-        <strong>Latest</strong>
-    </div>
-    <div fxFlex fxLayoutAlign='center start'>
-        <strong>Posts</strong>
-    </div>
-    <div fxFlex fxHide.xs fxLayoutAlign='center start'>
-        <strong>Views</strong>
-    </div>
-</div>
-
 <!-- Topic Listing -->
-<div fxLayout='row'>
+<div fxLayout='row' class='wrapper'>
     <div fxFlex='30px' fxHide.xs></div>
     <div fxFlex='20%' fxLayout='column'>
         <a routerLink='/forums/t/{{topic._id}}'>{{topic.title}}</a>
@@ -35,10 +16,10 @@
             <a routerLink='/forums/t/{{topic._id}}?post=/{{latestPost._id}}' class='latest-time'>3 minutes ago</a>
         </div>
     </div>
-    <div fxFlex fxLayoutAlign='center start'>
+    <div fxFlex fxLayoutAlign='center center'>
         <strong>{{topic.replyCount}}</strong>
     </div>
-    <div fxFlex fxHide.xs fxLayoutAlign='center start'>
+    <div fxFlex fxHide.xs fxLayoutAlign='center center'>
         <strong>{{topic.views}}</strong>
     </div>
 </div>
