@@ -18,3 +18,8 @@ a {
 .avatar {
     border-radius: 3px;
 }
+
+
+.full-width {
+    width: 100%;
+}

@@ -1,0 +1,21 @@
+<app-header [title]="'Users'" [subtitle]="'Manage forum users'">
+</app-header>
+
+<div fxLayout='column' fxLayoutGap='15px'>
+    <div class='user-search-wrapper'>
+        <form (submit)='searchUser(name.value)' [formGroup]='searchFormGroup'>
+            <mat-form-field class='full-width'>
+                <input matInput [formControl]="searchFormControl" #name>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div class='result-wrapper' fxLayoutWrap>
+        <div fxFlex *ngFor='let user of results' fxLayout='row' class='user'>
+            <div fxLayoutAlign='start center'>
+                <img class='avatar' src='{{user.avatar}}'>
+                <a routerLink='/u/{{user.name}}' class='name'>{{user.name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
