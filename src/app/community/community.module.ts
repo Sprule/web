@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { ReplyTopicComponent } from './forum/reply-topic/reply-topic.component';
 import { HeaderModule } from './header/header.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +33,7 @@ import { TopicListingComponent } from './forum/category/topic-listing/topic-list
         CommonModule,
         NavbarModule,
         HeaderModule,
+        SharedModule,
         RouterModule.forChild([
             {
                 path: '', component: NavbarComponent, canActivate: [CommunityGuard], children: [

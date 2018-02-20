@@ -66,7 +66,7 @@ export class TopicComponent implements OnInit {
         this.repliesLoading = true;
         let result = await this.apollo.query({
             query: gql`
-                    query topic($id: ID!, $offset: Int, $amount: Int) {
+                    query topic($id: ID!, $offset: Int, $amount: Int, $community: ID!) {
                         topic(id: $id) {
                             _id
                             replies(offset: $offset, amount: $amount) {
@@ -74,6 +74,12 @@ export class TopicComponent implements OnInit {
                                 user {
                                     _id
                                     name
+                                    roles(community: $community) {
+                                        _id
+                                        tagName
+                                        tagTextColor
+                                        tagBackgroundColor
+                                    }
                                 }
                                 content
                                 edits
@@ -85,7 +91,8 @@ export class TopicComponent implements OnInit {
             variables: {
                 id: this.topic._id,
                 offset: offset,
-                amount: amount
+                amount: amount,
+                community: this.community.community._id
             },
             fetchPolicy: 'network-only'
         }).toPromise() as any;

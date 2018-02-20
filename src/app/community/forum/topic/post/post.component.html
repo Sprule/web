@@ -4,6 +4,7 @@
         <div fxLayout='column'>
             <div>
                 <a class='post-user' routerLink='/u/{{post.user.name}}' class='user-name'>{{post.user.name}}</a>
+                <app-user-role-tag *ngFor='let role of post.user.roles' [role]='role'></app-user-role-tag>
             </div>
             <span class='post-time'>posted 1 hour ago </span>
         </div>

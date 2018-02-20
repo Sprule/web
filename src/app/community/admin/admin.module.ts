@@ -13,6 +13,7 @@ import { NavbarModule } from '../../navbar/navbar.module';
 import { AdminCategoriesComponent } from './categories/categories.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from '../../global/dialog/confirm/confirm.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import { ConfirmDialogComponent } from '../../global/dialog/confirm/confirm.comp
         CommonModule,
         NavbarModule,
         HeaderModule,
+        SharedModule,
         RouterModule.forChild([
             {
                 path: '', component: AdminSidebarComponent, children: [
