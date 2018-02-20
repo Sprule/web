@@ -15,12 +15,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from '../../global/dialog/confirm/confirm.component';
 import { SharedModule } from '../shared/shared.module';
 import { AdminUsersComponent } from './users/users.component';
-import { UserViewComponent } from './users/user-view/user-view.component';
+import { AdminUserViewComponent } from './users/user-view/user-view.component';
 
 @NgModule({
     declarations: [
         AdminHomeComponent, AdminSidebarComponent, AdminCategoriesComponent,
-        ConfirmDialogComponent, AdminRolesComponent, AdminUsersComponent, UserViewComponent
+        ConfirmDialogComponent, AdminRolesComponent, AdminUsersComponent, AdminUserViewComponent
     ],
     imports: [
         CommonModule,
@@ -33,7 +33,8 @@ import { UserViewComponent } from './users/user-view/user-view.component';
                     { path: '', component: AdminHomeComponent },
                     { path: 'categories', component: AdminCategoriesComponent },
                     { path: 'roles', component: AdminRolesComponent },
-                    { path: 'users', component: AdminUsersComponent }
+                    { path: 'users', component: AdminUsersComponent },
+                    { path: 'users/:user', component: AdminUserViewComponent, pathMatch: 'full' },
                 ]
             }
         ]),

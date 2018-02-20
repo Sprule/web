@@ -1,3 +1,10 @@
-<p>
-  user-view works!
-</p>
+<div class='wrapper' fxLayout='column'>
+    <button mat-icon-button routerLink='/admin/users'>
+        <mat-icon>keyboard_arrow_left</mat-icon>
+         Back
+    </button>
+
+    <div *ngIf='user'>
+        <h1>{{user.name}}</h1>
+    </div>
+</div>

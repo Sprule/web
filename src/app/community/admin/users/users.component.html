@@ -14,7 +14,7 @@
         <div fxFlex *ngFor='let user of results' fxLayout='row' class='user'>
             <div fxLayoutAlign='start center'>
                 <img class='avatar' src='{{user.avatar}}'>
-                <a routerLink='/u/{{user.name}}' class='name'>{{user.name}}</a>
+                <a routerLink='/admin/users/{{user.name}}' class='name'>{{user.name}}</a>
             </div>
         </div>
     </div>
